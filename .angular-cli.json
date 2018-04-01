@@ -19,9 +19,26 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/font-awesome/css/font-awesome.css",
+        "../node_modules/alertifyjs/build/css/alertify.min.css",
+        "../node_modules/alertifyjs/build/css/themes/default.min.css",
+        "../node_modules/fancybox/dist/css/jquery.fancybox.css",
+        "../node_modules/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css",
+        "../node_modules/slick-carousel/slick/slick.scss",
+        "../node_modules/slick-carousel/slick/slick-theme.scss",
+        "./assets/styling/styles.scss"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "../node_modules/alertifyjs/build/alertify.min.js",
+        "../node_modules/fancybox/dist/js/jquery.fancybox.js",
+        "../node_modules/fancybox/dist/js/jquery.fancybox.pack.js",
+        "../node_modules/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js",
+        "../node_modules/jquery-zoom/jquery.zoom.min.js",
+        "../node_modules/slick-carousel/slick/slick.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
@@ -54,7 +71,7 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
+    "styleExt": "scss",
     "component": {}
   }
 }
