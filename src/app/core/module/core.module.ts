@@ -1,6 +1,11 @@
 import { NgModule, ModuleWithProviders, Optional, SkipSelf, ErrorHandler } from '@angular/core';
 import { I18N_PROVIDERS } from '../service/i18n/i18n.service';
+import { API_PROVIDERS } from '../service/api/api.service';
+import { AuthService } from '../service/auth/auth.service';
 
+const AUTH_PROVIDERS = [
+  AuthService
+];
 
 @NgModule({
   imports: [],
@@ -18,7 +23,11 @@ export class CoreModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: CoreModule,
-      providers: [I18N_PROVIDERS]
+      providers: [
+        I18N_PROVIDERS,
+        API_PROVIDERS,
+        AUTH_PROVIDERS
+      ]
     };
   }
 }

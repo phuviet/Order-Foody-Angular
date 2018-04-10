@@ -24,6 +24,7 @@
     "@angular/router": "^5.2.9",
     "@ngx-translate/core": "^9.1.1",
     "@ngx-translate/http-loader": "^0.1.0",
+    "angular2-jwt": "^0.2.3",
     "alertifyjs": "^1.11.1",
     "bootstrap": "^3.3.7",
     "bootstrap-touchspin": "^3.1.1",
@@ -35,7 +36,11 @@
     "jquery-zoom": "^1.7.20",
     "rxjs": "^5.5.8",
     "slick-carousel": "^1.8.1",
-    "zone.js": "^0.8.14"
+    "zone.js": "^0.8.14",
+    "ng2-ckeditor": "1.1.9",
+    "ng2-validation": "^4.2.0",
+    "primeng": "^5.2.0",
+    "moment": "^2.18.1"
   },
   "devDependencies": {
     "@angular/cli": "1.2.4",

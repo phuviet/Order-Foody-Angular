@@ -999,12 +999,12 @@ div.radio.disabled.active span.checked {
 
 .ui-state-default,
 .ui-state-default:hover {
-  border-radius: 0;
+  /* border-radius: 0;
   width: 11px !important;
   height: 24px !important;
   border-color: #fff !important;
   top: -8px !important;
-  background: #777 !important;
+  background: #777 !important; */
 }
 
 .checkbox-list>label {

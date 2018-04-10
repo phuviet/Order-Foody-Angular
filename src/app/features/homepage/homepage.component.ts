@@ -6,7 +6,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor() { }
+  value: any
+
+  constructor() {
+    this.value = [
+      {
+        label: 'Viet',
+        value: 'Nguyen'
+      },
+      {
+        label: 'Nam',
+        value: 'Nguyen'
+      }
+    ]
+  }
 
   ngOnInit() {
   }
