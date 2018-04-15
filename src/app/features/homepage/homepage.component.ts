@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../core/service/index';
 
 @Component({
   selector: 'app-homepage',
@@ -6,19 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
 
-  value: any
-
-  constructor() {
-    this.value = [
-      {
-        label: 'Viet',
-        value: 'Nguyen'
-      },
-      {
-        label: 'Nam',
-        value: 'Nguyen'
-      }
-    ]
+  constructor(
+    private api: ApiService
+  ) {
   }
 
   ngOnInit() {

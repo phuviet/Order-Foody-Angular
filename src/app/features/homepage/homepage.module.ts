@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/module/shared.module';
 import { HomepageComponent } from './homepage.component';
 import { DropdownModule } from 'primeng/primeng';
+import { SidebarModule } from '../../shared/layout/sidebar/sidebar.module';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
   imports: [
     SharedModule,
     DropdownModule,
+    SidebarModule,
     RouterModule.forChild(routes)
   ],
   declarations: [

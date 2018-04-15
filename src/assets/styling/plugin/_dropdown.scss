@@ -1,8 +1,10 @@
 $navy: #bfac8a;
 $suva-grey: #888888;
+$border-color: #e7eaec;
 
 .ui-dropdown {
   width: inherit !important;
+  border: 1px solid $border-color;
   &:not(.ui-state-disabled) {
     &:hover {
       color: inherit;
@@ -32,6 +34,7 @@ $suva-grey: #888888;
     width: 85%;
   }
   .ui-dropdown-panel {
+    background-color: white;
     .ui-dropdown-item {
       width: auto;
       overflow: hidden;

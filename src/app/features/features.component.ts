@@ -11,5 +11,6 @@ export class FeaturesComponent implements OnInit {
   }
 
   ngOnInit() {
+    jQuery('body.ecommerce').css('background-color', '#f9f9f9');
   }
 }

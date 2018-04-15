@@ -9,7 +9,7 @@ import 'rxjs/add/observable/forkJoin';
 import { environment } from '../../../../environments/environment';
 import { AuthService } from '../auth/auth.service';
 
-const apiBaseUrl = `${environment.apiBaseUrl}/api/v2`;
+const apiBaseUrl = `${environment.apiBaseUrl}/v1`;
 
 export interface MultipleReq {
   uri: Array<any> | any;

@@ -1,0 +1,95 @@
+$silver-bold: #dddddd;
+$text-color: #676a6c;
+$matte-silver: #eeeeee;
+$border-color: #e7eaec;
+
+%paging-item {
+  background-color: white;
+  border: 1px solid $border-color;
+  color: $text-color;
+  display: inline-block;
+  line-height: 1.42857;
+  padding: 4px 10px;
+  margin: 0;
+  position: relative;
+  text-decoration: none;
+  text-transform: none;
+  font-weight: normal;
+  &:not(.ui-paginator-last) {
+    border-right: none;
+  }
+}
+
+.ui-paginator-bottom {
+  background: transparent;
+  margin-top: 24px;
+  border: none;
+}
+.ui-paginator {
+  text-align: right;
+  a {
+    &:focus {
+      outline: none;
+    }
+    &:not(.ui-state-active) {
+      &:not(.ui-state-disabled) {
+        &:hover {
+          border-color: $silver-bold;
+          color: $text-color;
+        }
+      }
+    }
+  }
+  .ui-paginator-first {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    .fa-step-backward {
+      &:before {
+        content: "\f100";
+      }
+    }
+  }
+  .ui-paginator-last {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    .fa-step-forward {
+      &:before {
+        content: "\f101";
+      }
+    }
+  }
+  .ui-paginator-prev {
+    .fa-backward {
+      &:before {
+        content: "\f104";
+      }
+    }
+  }
+  .ui-paginator-next {
+    .fa-forward {
+      &:before {
+        content: "\f105";
+      }
+    }
+  }
+  .ui-paginator-first,
+  .ui-paginator-prev,
+  .ui-paginator-next,
+  .ui-paginator-last {
+    margin-left: -4px;
+  }
+  .ui-paginator-pages {
+    padding: 0;
+    margin-left: -4px;
+    margin-right: 0;
+  }
+  .ui-paginator-element {
+    @extend %paging-item;
+    &.ui-state-disabled {
+      cursor: not-allowed;
+    }
+    &.ui-state-active {
+      background-color: $matte-silver;
+    }
+  }
+}

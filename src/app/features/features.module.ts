@@ -5,6 +5,8 @@ import { SharedModule } from '../shared/module/shared.module';
 import { dashboardRoutes } from './homepage/homepage.routing';
 import { HeaderModule } from '../shared/layout/header/header.module';
 import { FooterModule } from '../shared/layout/footer/footer.module';
+import { productListRoutes } from './product/product-list/product-list.routing';
+import { productDetailRoutes } from './product/product-detail/product-detail.routing';
 
 const routes: Routes = [
   {
@@ -12,6 +14,8 @@ const routes: Routes = [
     component: FeaturesComponent,
     children: [
       ...dashboardRoutes,
+      ...productListRoutes,
+      ...productDetailRoutes,
       {
         path: '**',
         redirectTo: 'homepage',
