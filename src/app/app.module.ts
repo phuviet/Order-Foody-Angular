@@ -20,7 +20,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     noTokenScheme: true,
     noJwtError: true,
     noClientCheck: true,
-		tokenGetter: (() => localStorage.getItem('token')),
+		tokenGetter: (() => localStorage.getItem('token') || ""),
 		globalHeaders: [
       {'Accept': 'application/json'},
       {'Content-Type':'application/json'}

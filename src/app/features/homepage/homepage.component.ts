@@ -7,12 +7,27 @@ import { ApiService } from '../../core/service/index';
 })
 export class HomepageComponent implements OnInit {
 
+  bestSellersProduct: any;
+
   constructor(
     private api: ApiService
   ) {
+    this.bestSellersProduct = [];
   }
 
   ngOnInit() {
+    this.fetchData();
   }
 
+  fetchData() {
+    this.api.get(['products', 'sellers']).subscribe(
+      (data: any) => {
+        this.bestSellersProduct = data;
+      }, (error: any) => {
+        //
+      }, () => {
+        //
+      }
+    )
+  }
 }

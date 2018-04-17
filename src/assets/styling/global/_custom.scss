@@ -7,7 +7,7 @@
 }
 
 .display-inline-block {
-  display: inline !important;
+  display: inline-block !important;
 }
 
 .m-r-xs {
@@ -22,10 +22,27 @@
   margin-right: 15px;
 }
 
+.m-l-xs {
+  margin-left: 5px;
+}
+
+.m-l-sm {
+  margin-left: 10px;
+}
+
+.m-l-md {
+  margin-left: 15px;
+}
+
 .dropdown-sm {
   width: 200px !important;
 }
 
 .dropdown-md {
   width: 300px !important;
+}
+
+.full-screen {
+  width: 100%;
+  height: 100%;
 }
