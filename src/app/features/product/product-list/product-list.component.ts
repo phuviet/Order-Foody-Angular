@@ -13,6 +13,7 @@ export class ProductListComponent implements OnInit {
   productList: any;
   categoryId: number;
   datatableConfigs: DataTableConfigs;
+  bestSellersProduct: any;
 
   constructor(
     private api: ApiService,
@@ -63,10 +64,18 @@ export class ProductListComponent implements OnInit {
   }
 
   fetchData() {
-    this.api.get(['categories', this.categoryId, 'products']).subscribe(
+    this.api.multiple(
+      { uri: ['categories', this.categoryId, 'products'], method: 'GET' },
+      { uri: ['products', 'sellers'], method: 'GET' }
+    ).subscribe(
       (data: any) => {
-        this.datatableConfigs.value = data.products;
-        this.datatableConfigs.totalRecords = data.meta.total_entries;
+        if (data[0]) {
+          this.datatableConfigs.value = data[0].products;
+          this.datatableConfigs.totalRecords = data[0].meta.total_entries;
+        }
+        if (data[1]) {
+          this.bestSellersProduct = data[1];
+        }
       }, (error: any) => {
         //
       }, () => {

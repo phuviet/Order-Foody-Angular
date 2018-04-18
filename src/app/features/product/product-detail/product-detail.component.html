@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main product-detail">
   <div class="container">
     <div class="row">
       <div class="sidebar col-md-3 col-sm-5">
@@ -7,7 +7,7 @@
           <h2>Bestsellers</h2>
           <ng-template ngFor let-item [ngForOf]="bestSellersProduct">
             <div class="item">
-              <a [routerLink]="['/product-detail', item?.id]"><img src="assets/pages/img/products/k1.jpg" alt="Some Shoes in Animal with Cut Out"></a>
+              <a [routerLink]="['/product-detail', item?.id]"><img src="http://localhost:3000{{ item?.avatar }}" alt="{{ item?.name }}"></a>
               <h3><a [routerLink]="['/product-detail', item?.id]">{{ item?.name }}</a></h3>
               <div class="price">{{ item?.price }}</div>
             </div>
@@ -19,7 +19,7 @@
           <div class="row">
             <div class="col-md-6 col-sm-6">
               <div class="product-main-image">
-                <img src="assets/pages/img/products/model7.jpg" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="assets/pages/img/products/model7.jpg">
+                <img src="http://localhost:3000{{ product?.avatar }}" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="assets/pages/img/products/model7.jpg">
               </div>
               <div class="product-other-images">
                 <a href="assets/pages/img/products/model3.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="assets/pages/img/products/model3.jpg"></a>
@@ -105,40 +105,54 @@
                     </div>
                   </form>
                   <!-- END FORM-->
-                  <hr>
                   <p *ngIf="!product?.parent_comments?.length; else otherComment">There are no comments for this product.</p>
                   <ng-template #otherComment>
-                    <div *ngFor="let parentItem of product?.parent_comments" class="review-item clearfix">
+                    <div *ngFor="let parentItem of product?.parent_comments; let lastParent = last" class="review-item clearfix">
                       <div class="parent-comment">
                         <div class="review-item-submitted clearfix">
                           <div class="col-md-6 no-padding">
-                            <strong>{{ parentItem?.user?.full_name }}</strong>
-                            <em>16/04/2018 - 10:31:34</em>
-                          </div>
-                          <div class="col-md-6 no-padding text-right">
+                            <img class="image-40 display-inline" src="http://localhost:3000{{ parentItem?.user?.avatar }}" alt="{{ parentItem?.user?.full_name }}">
+                            <strong class="m-l-sm display-inline-block">{{ parentItem?.user?.full_name }}</strong>
                           </div>
                         </div>
-                        <div class="review-item-content">
-                          <p>{{ parentItem?.context }}</p>
-                        </div>
-                      </div>
-                      <div class="m-l-md children-comment">
-                        <ng-template ngFor let-childItem [ngForOf]="parentItem.child_comments">
-                          <div class="review-item-submitted clearfix">
-                            <div class="col-md-6 no-padding">
-                              <strong>{{ childItem?.user?.full_name }}</strong>
-                              <em>16/04/2018 - 10:31:34</em>
-                            </div>
-                            <div class="col-md-6 no-padding text-right">
-                            </div>
-                          </div>
+                        <div class="m-l-sm">
                           <div class="review-item-content">
-                            <p>{{ childItem?.context }}</p>
+                            <p class="no-margin">{{ parentItem?.context }}</p>
                           </div>
-                        </ng-template>
-                        <!-- <div class="input-comment">
-                          <input type="text" class="full-screen">
-                        </div> -->
+                          <div class="text-right review-item-submitted clearfix no-margin">
+                            <em>{{ parentItem?.from_now }}</em>
+                          </div>
+                          <p *ngIf="parentItem?.child_comments?.length && !parentItem.isShowChildComment" class="margin-bottom-10">
+                            <a (click)="toggleShowComment(parentItem)">Show child comments.</a>
+                          </p>
+                        </div>
+                        <div class="m-l-xl children-comment">
+                          <ng-template [ngIf]="parentItem?.isShowChildComment">
+                            <div *ngFor="let childItem of parentItem.child_comments; let lastChild = last">
+                              <div class="review-item-submitted clearfix">
+                                <div class="col-md-6 no-padding">
+                                  <img class="image-40 display-inline" src="http://localhost:3000{{ childItem?.user?.avatar }}" alt="">
+                                  <strong class="m-l-sm display-inline-block">{{ childItem?.user?.full_name }}</strong>
+                                </div>
+                              </div>
+                              <div class="m-l-sm">
+                                <div class="review-item-content">
+                                  <p class="no-margin">{{ childItem?.context }}</p>
+                                </div>
+                                <div class="review-item-submitted clearfix text-right">
+                                  <em>{{ childItem?.from_now }}</em>
+                                </div>
+                              </div>
+                              <hr *ngIf="!lastChild">
+                            </div>
+                          </ng-template>
+                          <!-- <div class="input-comment">
+                            <input type="text" class="full-screen">
+                          </div> -->
+                        </div>
+                        <p class="m-l-sm" *ngIf="parentItem?.child_comments?.length && parentItem.isShowChildComment">
+                          <a (click)="toggleShowComment(parentItem)">Hide child comments.</a>
+                        </p>
                       </div>
                     </div>
                   </ng-template>
@@ -171,7 +185,7 @@
                   <hr>
                   <p *ngIf="!product?.votes?.length; else otherReview">There are no reviews for this product.</p>
                   <ng-template #otherReview>
-                    <div *ngFor="let item of product?.votes" class="review-item clearfix">
+                    <div *ngFor="let item of product?.votes; let lastReview = last" class="review-item clearfix">
                       <div class="review-item-submitted clearfix">
                         <div class="col-md-6 no-padding">
                           <strong>{{ item?.user?.full_name }}</strong>

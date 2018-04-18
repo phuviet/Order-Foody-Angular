@@ -8,20 +8,31 @@ import { ApiService } from '../../../core/service/index';
 export class HeaderComponent implements OnInit {
 
   categories: any;
+  topNewestProduct: any;
 
   constructor(
     private api: ApiService
-  ) { }
+  ) {
+    this.topNewestProduct = [];
+  }
 
   ngOnInit() {
     this.fetchData();
   }
-
+   
   fetchData() {
-    this.api.get(['categories']).subscribe(
+    this.api.multiple(
+      { uri: ['categories'], method: 'GET' },
+      { uri: ['products', 'newest'], method: 'GET' }
+    ).subscribe(
       (data: any) => {
-        this.categories = data;
-      }, (err: any) => {
+        if (data[0]) {
+          this.categories = data[0];
+        }
+        if (data[1]) {
+          this.topNewestProduct = data[1];
+        }
+      }, (error: any) => {
         //
       }, () => {
         //

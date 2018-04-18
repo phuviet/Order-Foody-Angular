@@ -40,8 +40,7 @@ export class ProductDetailComponent implements OnInit {
         if (data[0]) {
           this.product = data[0];
           this.parseDateReview(this.product.votes);
-          console.log(this.product.parent_comments);
-          // this.parseDateComment(this.product.parent_comments);
+          this.parseDateComment(this.product.parent_comments);
         }
         if (data[1]) {
           this.bestSellersProduct = data[1];
@@ -69,8 +68,17 @@ export class ProductDetailComponent implements OnInit {
         let local = moment.utc(item.created_at).toDate();
         item.created_at = moment(local).local().format('YYYY/MM/DD HH:mm:ss');
         item.from_now = moment(item.created_at, 'YYYY/MM/DD HH:mm:ss').fromNow();
+        item.isShowChildComment = false;
+        if (item.child_comments) {
+          this.parseDateComment(item.child_comments);
+        }
         return item;
       });
+      console.log(data);
     }
+  }
+
+  toggleShowComment(parentComment: any) {
+    parentComment.isShowChildComment = !parentComment.isShowChildComment;
   }
 }
