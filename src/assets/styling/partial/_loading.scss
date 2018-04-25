@@ -1,0 +1,58 @@
+.loading-full {
+  width: 100%;
+  position: fixed;
+  cursor: default;
+  z-index: 9999;
+  .loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1rem;
+    &:before {
+      content: '';
+      animation: progress 5000ms infinite linear;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: .5rem;
+      left: 0;
+      transform: scaleX(0);
+      background: #1ab394;
+      transform-origin: 0% 50%;
+    }
+    .bar {
+      position: absolute;
+      top: 1rem;
+      left: 0;
+      transform: translateX(-50%);
+      &:before {
+        content: '';
+        transform: translateY(-1rem);
+        background: black;
+        position: absolute;
+        top: 0;
+        bottom: .5rem;
+        left: 49%;
+        width: 1px;
+      }
+      &:nth-child(2) {
+        left: 20%;
+      }
+      &:nth-child(3) {
+        left: 50%;
+      }
+      &:nth-child(4) {
+        left: 80%;
+      }
+      &:nth-child(5) {
+        left: 100%;
+      }
+    }
+  }
+  @keyframes progress {
+    100% {
+      transform: scaleX(1);
+    }
+  }
+}

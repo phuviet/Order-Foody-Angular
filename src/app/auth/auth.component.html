@@ -1,0 +1,30 @@
+<div id="back">
+    <div class="backLeft">
+      <div class="head">
+        <h1>Register Now!</h1>
+      </div>
+      <div class="detail">
+        <p>Create account to track orders, <br>save
+          favorite product list,<br> received
+          many attractive incentives.
+        </p>
+        <a [routerLink]="['/register']">Register!</a>
+      </div>
+    </div>
+    <div class="backRight"></div>
+  </div>
+  <div id="slideBox">
+    <div class="topLayer">
+      <div class="right">
+        <div class="back">
+          <i class="fa fa-long-arrow-left" aria-hidden="true"></i> <a [routerLink]="['/homepage']">Back to homepage</a>
+        </div>
+        <div class="col-md-4 col-sm-4 col-sm-offset-4 logo">
+          <img src="../../../../assets/corporate/img/logos/logo.png" class="img-responsive center-block" alt="Rounded Image">
+        </div>
+        <div class="content">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>

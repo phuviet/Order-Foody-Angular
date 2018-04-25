@@ -60,3 +60,24 @@
   height: 40px;
   border-radius: 50% !important;
 }
+
+/* app alert */
+.app-alert {
+  height: auto;
+  background: $white;
+  min-width: 324px;
+  max-width: 324px;
+  position: fixed;
+  right: 10px;
+  z-index: 9999;
+  top: 36px;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+  animation-name: fadeInDown;
+  &:after {
+    clear: left;
+  }
+  .alert {
+    margin-bottom: 0;
+  }
+}

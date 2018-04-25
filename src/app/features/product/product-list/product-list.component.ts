@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../core/service/index';
+import { ApiService, NotificationService } from '../../../core/service/index';
 import { Router, ActivatedRoute } from '@angular/router';
 import { datatableConfigs, DataTableConfigs } from '../../../shared/model/datatable.config';
+import { parseQuery, updateQuery } from '../../../shared/function/url';
 
 @Component({
   selector: 'app-product-list',
@@ -14,13 +15,16 @@ export class ProductListComponent implements OnInit {
   categoryId: number;
   datatableConfigs: DataTableConfigs;
   bestSellersProduct: any;
+  params: any;
 
   constructor(
     private api: ApiService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private ns: NotificationService
   ) {
     this.productList = [];
+    this.params = {};
     this.datatableConfigs = datatableConfigs();
     this.sortOptionList = [
       {
@@ -63,9 +67,14 @@ export class ProductListComponent implements OnInit {
     });
   }
 
+  addToCart(product: any, quantity: number = 1) {
+    this.ns.cart(product, quantity);
+  }
+
   fetchData() {
+    let _params: any = parseQuery(this.params);
     this.api.multiple(
-      { uri: ['categories', this.categoryId, 'products'], method: 'GET' },
+      { uri: ['categories', this.categoryId, `products${_params}`], method: 'GET' },
       { uri: ['products', 'sellers'], method: 'GET' }
     ).subscribe(
       (data: any) => {
@@ -82,5 +91,10 @@ export class ProductListComponent implements OnInit {
         //
       }
     )
+  }
+
+  loadData(e: any) {
+    this.params.page = e.page + 1;
+    this.router.navigate(updateQuery(this.route.snapshot, this.params));
   }
 }

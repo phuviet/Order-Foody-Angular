@@ -22,9 +22,11 @@
                 <img src="http://localhost:3000{{ product?.avatar }}" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="assets/pages/img/products/model7.jpg">
               </div>
               <div class="product-other-images">
-                <a href="assets/pages/img/products/model3.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="assets/pages/img/products/model3.jpg"></a>
-                <a href="assets/pages/img/products/model4.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="assets/pages/img/products/model4.jpg"></a>
-                <a href="assets/pages/img/products/model5.jpg" class="fancybox-button" rel="photos-lib"><img alt="Berry Lace Dress" src="assets/pages/img/products/model5.jpg"></a>
+                <ng-template ngFor let-image [ngForOf]="product?.products_images">
+                  <a href="assets/pages/img/products/model3.jpg" class="fancybox-button" rel="photos-lib">
+                    <img alt="{{ product?.name }}" src="http://localhost:3000{{ image?.url }}">
+                  </a>
+                </ng-template>
               </div>
             </div>
             <div class="col-md-6 col-sm-6">
@@ -61,14 +63,15 @@
               </div> -->
               <div class="product-page-cart">
                 <div class="product-quantity">
-                  <input id="product-quantity" type="text" value="1" readonly class="form-control input-sm">
+                  <input [(ngModel)]="quantity" id="product-quantity" min="1" type="number" value="1" class="form-control input-sm">
                 </div>
-                <button class="btn btn-primary" type="submit">Add to cart</button>
+                <button (click)="addToCart(product, quantity)" class="btn btn-primary" type="submit">Add to cart</button>
               </div>
               <div class="review">
                 <p-rating [stars]="5"
                           [cancel]="false"
-                          [ngModel]="product?.star"></p-rating>
+                          [ngModel]="product?.star"
+                          [readonly]="true"></p-rating>
                 <div class="rateit display-inline-block">
                 </div>
                 <a href="javascript:;">{{ product?.votes?.length }} reviews</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;">Write a review</a>
@@ -84,9 +87,9 @@
 
             <div class="product-page-content">
               <ul id="myTab" class="nav nav-tabs">
-                <li class="active"><a href="#Description" data-toggle="tab">Description</a></li>
+                <li class="active"><a href="#Description" data-toggle="tab">{{ 'product.description' | translate }}</a></li>
                 <li><a href="#Reviews" data-toggle="tab">Reviews ({{ product?.votes?.length }})</a></li>
-                <li><a href="#Comments" data-toggle="tab">Comments (5)</a></li>
+                <li><a href="#Comments" data-toggle="tab">Comments ({{ product?.parent_comments?.length }})</a></li>
               </ul>
               <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade in active" id="Description">
@@ -94,14 +97,17 @@
                 </div>
                 <div class="tab-pane fade" id="Comments">
                   <!-- BEGIN FORM-->
-                  <form action="#" class="reviews-form margin-bottom-40" role="form">
+                  <form [formGroup]="formComment" class="reviews-form margin-bottom-40" role="form">
                     <h2>Write a comment</h2>
                     <div class="form-group">
                       <label for="comment">Comment <span class="require">*</span></label>
-                      <textarea class="form-control" rows="5" id="comment"></textarea>
+                      <textarea formControlName="context" class="form-control" rows="5" id="comment"></textarea>
                     </div>
                     <div class="padding-top-20">
-                      <button type="submit" class="btn btn-primary">Send</button>
+                      <button (click)="submitComment()"
+                              [disabled]="!formComment.valid"
+                              type="submit"
+                              class="btn btn-primary">Comment</button>
                     </div>
                   </form>
                   <!-- END FORM-->
@@ -150,6 +156,11 @@
                             <input type="text" class="full-screen">
                           </div> -->
                         </div>
+
+                        <!-- <div>
+                          <input class="m-l-sm" type="text" [ngStyle]="{ 'width': '99%', 'height': '30px' }">
+                        </div> -->
+
                         <p class="m-l-sm" *ngIf="parentItem?.child_comments?.length && parentItem.isShowChildComment">
                           <a (click)="toggleShowComment(parentItem)">Hide child comments.</a>
                         </p>
@@ -159,7 +170,7 @@
                 </div>
                 <div class="tab-pane fade" id="Reviews">
                   <!-- BEGIN FORM-->
-                  <form action="#" class="reviews-form margin-bottom-40" role="form">
+                  <form [formGroup]="formReview" class="reviews-form margin-bottom-40" role="form">
                     <h2>Write a review</h2>
                     <!-- <div class="form-group">
                       <label for="name">Name <span class="require">*</span></label>
@@ -171,14 +182,17 @@
                     </div> -->
                     <div class="form-group">
                       <label for="review">Review <span class="require">*</span></label>
-                      <textarea class="form-control" rows="5" id="review"></textarea>
+                      <textarea formControlName="description" class="form-control" rows="5" id="review"></textarea>
                     </div>
                     <div class="form-group">
                       <label for="email">Rating</label>
-                      <p-rating [stars]="5"></p-rating>
+                      <p-rating formControlName="star" [stars]="5"></p-rating>
                     </div>
                     <div class="padding-top-20">
-                      <button type="submit" class="btn btn-primary">Send</button>
+                      <button (click)="submitReview()"
+                              [disabled]="!formReview.valid"
+                              type="submit"
+                              class="btn btn-primary">Review</button>
                     </div>
                   </form>
                   <!-- END FORM-->

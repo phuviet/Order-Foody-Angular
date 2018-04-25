@@ -30,9 +30,17 @@
         <!-- BEGIN TOP BAR MENU -->
         <div class="col-md-6 col-sm-6 additional-nav">
           <ul class="list-unstyled list-inline pull-right">
-            <li><a href="shop-account.html">My Account</a></li>
+            <li *ngIf="userInfo && userInfo?.id">
+              Hello&nbsp;<a>{{ userInfo?.full_name }}!</a>
+            </li>
+            <li *ngIf="userInfo && userInfo?.id"><a href="shop-account.html">My Account</a></li>
             <li><a href="shop-checkout.html">Checkout</a></li>
-            <li><a href="page-login.html">Log In</a></li>
+            <li *ngIf="userInfo && userInfo?.id; else logIn">
+                <a (click)="logout()">Log Out</a>
+            </li>
+            <ng-template #logIn>
+              <li><a [routerLink]="['/auth', 'login']">Log In</a></li>
+            </ng-template>
           </ul>
         </div>
         <!-- END TOP BAR MENU -->
@@ -51,73 +59,28 @@
       <!-- BEGIN CART -->
       <div class="top-cart-block">
         <div class="top-cart-info">
-          <a href="javascript:void(0);" class="top-cart-info-count">3 items</a>
-          <a href="javascript:void(0);" class="top-cart-info-value">$1260</a>
+          <a href="javascript:void(0);" class="top-cart-info-count">{{ currentCart?.length }} item(s)</a>
+          <a href="javascript:void(0);" class="top-cart-info-value">{{ totalPriceCart }}</a>
         </div>
         <i class="fa fa-shopping-cart"></i>
-        <div class="top-cart-content-wrapper">
+        <div *ngIf="currentCart?.length" class="top-cart-content-wrapper">
           <div class="top-cart-content">
-            <ul class="scroller" style="height: 250px;">
-              <li>
-                <a href="shop-item.html"><img src="../../assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                <span class="cart-content-count">x 1</span>
-                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                <em>$1230</em>
-                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-              </li>
-              <li>
-                <a href="shop-item.html"><img src="../../assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                <span class="cart-content-count">x 1</span>
-                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                <em>$1230</em>
-                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-              </li>
-              <li>
-                <a href="shop-item.html"><img src="../../assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                <span class="cart-content-count">x 1</span>
-                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                <em>$1230</em>
-                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-              </li>
-              <li>
-                <a href="shop-item.html"><img src="../../assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                <span class="cart-content-count">x 1</span>
-                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                <em>$1230</em>
-                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-              </li>
-              <li>
-                <a href="shop-item.html"><img src="../../assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                <span class="cart-content-count">x 1</span>
-                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                <em>$1230</em>
-                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-              </li>
-              <li>
-                <a href="shop-item.html"><img src="../../assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                <span class="cart-content-count">x 1</span>
-                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                <em>$1230</em>
-                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-              </li>
-              <li>
-                <a href="shop-item.html"><img src="../../assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                <span class="cart-content-count">x 1</span>
-                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                <em>$1230</em>
-                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-              </li>
-              <li>
-                <a href="shop-item.html"><img src="../../assets/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
-                <span class="cart-content-count">x 1</span>
-                <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
-                <em>$1230</em>
-                <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
-              </li>
+            <ul class="scroller" style="height: auto;">
+              <ng-template ngFor let-itemCart [ngForOf]="currentCart">
+                <li>
+                  <a [routerLink]="['/product-detail', itemCart?.id]">
+                    <img src="http://localhost:3000{{ itemCart?.avatar }}" alt="{{ itemCart?.name }}" width="37" height="34">
+                  </a>
+                  <span class="cart-content-count">x {{ itemCart?.quantity }}</span>
+                  <strong><a href="shop-itemCart.html">{{ itemCart?.name }}</a></strong>
+                  <em>{{ itemCart?.total }}</em>
+                  <a (click)="removeItemCart(itemCart.id)" class="del-goods">&nbsp;</a>
+                </li>
+              </ng-template>
             </ul>
             <div class="text-right">
               <a href="shop-shopping-cart.html" class="btn btn-default">View Cart</a>
-              <a href="shop-checkout.html" class="btn btn-primary">Checkout</a>
+              <!-- <a href="shop-checkout.html" class="btn btn-primary">Checkout</a> -->
             </div>
           </div>
         </div>
@@ -266,7 +229,7 @@
             </ul>
           </li>
 
-          <li class="dropdown dropdown100 nav-catalogue">
+          <!-- <li class="dropdown dropdown100 nav-catalogue">
             <a class="dropdown-toggle" data-toggle="dropdown" data-target="" href="javascript:;">
               New
             </a>
@@ -275,7 +238,7 @@
                 <div class="header-navigation-content">
                   <div class="row">
                     <ng-template ngFor let-newestItem [ngForOf]="topNewestProduct">
-                      <div class="col-md-3 col-sm-4 col-xs-6">
+                      <div class="col-md-4 col-sm-4 col-xs-6">
                         <div class="product-item">
                           <div class="pi-img-wrapper">
                             <a [routerLink]="['/product-detail', newestItem?.id]">
@@ -292,7 +255,7 @@
                 </div>
               </li>
             </ul>
-          </li>
+          </li> -->
 
           <li class="dropdown dropdown100 nav-catalogue">
             <a class="dropdown-toggle" data-toggle="dropdown" data-target="" href="javascript:;">

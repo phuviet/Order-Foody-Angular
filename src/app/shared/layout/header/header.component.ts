@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../core/service/index';
+import { ApiService, NotificationService, CartService, AuthService } from '../../../core/service/index';
 
 @Component({
   selector: 'app-header',
@@ -7,17 +7,60 @@ import { ApiService } from '../../../core/service/index';
 })
 export class HeaderComponent implements OnInit {
 
+  userInfo: any;
   categories: any;
   topNewestProduct: any;
+  currentCart: any;
+  totalPriceCart: number;
 
   constructor(
-    private api: ApiService
+    private api: ApiService,
+    private ns: NotificationService,
+    private cart: CartService,
+    private auth: AuthService
   ) {
+    this.userInfo = this.auth.getUserInfo();
     this.topNewestProduct = [];
+    this.currentCart = [];
+    if (localStorage.getItem('cart')) {
+      this.currentCart = JSON.parse(localStorage.getItem('cart'));
+    }
+    this.totalPriceCart = this.cart.updateTotalPriceCart();
   }
 
   ngOnInit() {
+    this.ns.cartObserver().subscribe((data: any) => {
+      if (data) {
+        this.checkExistProductInCart(data);
+      }
+    });
     this.fetchData();
+  }
+
+  checkExistProductInCart(data: any) {
+    if (localStorage.getItem('cart')) {
+      this.currentCart = JSON.parse(localStorage.getItem('cart'));
+    }
+    let existItemIndex = this.currentCart.findIndex((item) => item.id === data.product.id);
+    if (existItemIndex !== -1) {
+      this.currentCart[existItemIndex].quantity += data.quantity;
+      this.currentCart[existItemIndex].total = this.currentCart[existItemIndex].quantity * this.currentCart[existItemIndex].price;
+    } else {
+      data.product.total = data.product.price * data.quantity;
+      data.product.quantity = data.quantity;
+      this.currentCart.push(data.product);
+    }
+    localStorage.setItem('cart', JSON.stringify(this.currentCart));
+    this.totalPriceCart = this.cart.updateTotalPriceCart();
+  }
+
+  removeItemCart(id: any) {
+    this.currentCart = this.cart.removeItemCart(id);
+    this.totalPriceCart = this.cart.updateTotalPriceCart();
+  }
+
+  logout() {
+    this.auth.logout();
   }
    
   fetchData() {

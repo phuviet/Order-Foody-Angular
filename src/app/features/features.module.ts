@@ -5,6 +5,9 @@ import { SharedModule } from '../shared/module/shared.module';
 import { dashboardRoutes } from './homepage/homepage.routing';
 import { HeaderModule } from '../shared/layout/header/header.module';
 import { FooterModule } from '../shared/layout/footer/footer.module';
+import { ProgressBarModule } from '../shared/partial/progress-bar/progress-bar.module';
+import { ErrorModule } from '../shared/partial/error/error.module';
+
 import { productListRoutes } from './product/product-list/product-list.routing';
 import { productDetailRoutes } from './product/product-detail/product-detail.routing';
 
@@ -15,12 +18,12 @@ const routes: Routes = [
     children: [
       ...dashboardRoutes,
       ...productListRoutes,
-      ...productDetailRoutes,
-      {
-        path: '**',
-        redirectTo: 'homepage',
-        pathMatch: 'full'
-      }
+      ...productDetailRoutes
+      // {
+      //   path: '**',
+      //   redirectTo: 'homepage',
+      //   pathMatch: 'full'
+      // }
     ]
     // children: [
     //   {
@@ -49,6 +52,8 @@ const routes: Routes = [
     HeaderModule,
     FooterModule,
     SharedModule,
+    ProgressBarModule,
+    ErrorModule,
     RouterModule.forChild(routes)
   ],
   declarations: [
