@@ -1,3 +1,5 @@
 {
-  "name": "Nguyễn Phú Việt"
+  "product": {
+    "description": "Mô tả"
+  }
 }

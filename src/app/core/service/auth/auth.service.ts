@@ -25,11 +25,7 @@ export class AuthService {
     this.storeUserInformation(data);
     this.logger.next(true);
     let info = this.getUserInfo();
-    if (!info.last_login) {
-      this.router.navigate(['/auth/reset-password']);
-    } else {
-      this.redirectToPrevStep();
-    }
+    this.redirectToPrevStep();
   }
 
   logout() {
@@ -54,8 +50,8 @@ export class AuthService {
   storeUserInformation(data: any) {
     if (data) {
       localStorage.setItem('token', data.access_token);
-      localStorage.setItem('organizations', JSON.stringify(data.organizations));
-      localStorage.setItem('permissions', JSON.stringify(data.permissions));
+      // localStorage.setItem('organizations', JSON.stringify(data.organizations));
+      // localStorage.setItem('permissions', JSON.stringify(data.permissions));
     } else {
       this.logger.next(false);
     }
@@ -63,13 +59,16 @@ export class AuthService {
 
   destroyUserInformation() {
     localStorage.removeItem('token');
-    localStorage.removeItem('organizations');
-    localStorage.removeItem('permissions');
+    // localStorage.removeItem('organizations');
+    // localStorage.removeItem('permissions');
   }
 
   getUserInfo() {
     let token = localStorage.getItem('token');
-    let userInfo = this.jwtHelper.decodeToken(token);
+    let userInfo: any = {};
+    if (token) {
+      userInfo = this.jwtHelper.decodeToken(token);
+    }
     return userInfo.user || {};
     // console.log(
     //   this.jwtHelper.decodeToken(token),
@@ -109,13 +108,13 @@ export class AuthService {
   }
 
   redirectToPrevStep() {
-    let route = this.referralRoute ? this.referralRoute : '/';
-    this.router.navigateByUrl(route);
+    // let route = this.referralRoute ? this.referralRoute : '/homepage';
+    this.router.navigateByUrl('/homepage');
   }
 
   redirectToLogin(current: string = '/') {
     // Store current url as referral and use latter for login redirection
-    this.setRoute(current);
+    // this.setRoute(current);
     this.router.navigate(['/auth/login']);
   }
 
