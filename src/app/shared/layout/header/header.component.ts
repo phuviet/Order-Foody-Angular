@@ -21,11 +21,6 @@ export class HeaderComponent implements OnInit {
   ) {
     this.userInfo = this.auth.getUserInfo();
     this.topNewestProduct = [];
-    this.currentCart = [];
-    if (localStorage.getItem('cart')) {
-      this.currentCart = JSON.parse(localStorage.getItem('cart'));
-    }
-    this.totalPriceCart = this.cart.updateTotalPriceCart();
   }
 
   ngOnInit() {
@@ -34,6 +29,17 @@ export class HeaderComponent implements OnInit {
         this.checkExistProductInCart(data);
       }
     });
+    this.cart.price$.subscribe((totalPrice: any) => {
+      this.totalPriceCart = totalPrice;
+    });
+    this.cart.cart$.subscribe((currentCart: any) => {
+      this.currentCart = currentCart;
+    });
+    this.currentCart = [];
+    if (localStorage.getItem('cart')) {
+      this.currentCart = JSON.parse(localStorage.getItem('cart'));
+    }
+    this.cart.updateTotalPriceCart();
     this.fetchData();
   }
 
@@ -51,12 +57,12 @@ export class HeaderComponent implements OnInit {
       this.currentCart.push(data.product);
     }
     localStorage.setItem('cart', JSON.stringify(this.currentCart));
-    this.totalPriceCart = this.cart.updateTotalPriceCart();
+    this.cart.updateTotalPriceCart();
   }
 
   removeItemCart(id: any) {
-    this.currentCart = this.cart.removeItemCart(id);
-    this.totalPriceCart = this.cart.updateTotalPriceCart();
+    this.cart.removeItemCart(id);
+    this.cart.updateTotalPriceCart();
   }
 
   logout() {
