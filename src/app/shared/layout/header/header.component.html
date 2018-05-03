@@ -59,8 +59,8 @@
       <!-- BEGIN CART -->
       <div class="top-cart-block">
         <div class="top-cart-info">
-          <a href="javascript:void(0);" class="top-cart-info-count">{{ currentCart?.length }} item(s)</a>
-          <a href="javascript:void(0);" class="top-cart-info-value">{{ totalPriceCart }}</a>
+          <a [routerLink]="['/cart']" class="top-cart-info-count">{{ currentCart?.length }} item(s)</a>
+          <a [routerLink]="['/cart']" class="top-cart-info-value">{{ totalPriceCart }}</a>
         </div>
         <a [routerLink]="['/cart']"><i class="fa fa-shopping-cart"></i></a>
         <div *ngIf="currentCart?.length" class="top-cart-content-wrapper">

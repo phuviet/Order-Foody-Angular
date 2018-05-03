@@ -1,0 +1,41 @@
+.ui-accordion {
+  .ui-accordion-header {
+    background: #d9d9d9;
+    border-top: 1px solid #d9d9d9;
+    &.ui-state-active {
+      background: $white;
+      border-left-color: transparent;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0;
+    }
+    a {
+      color: #1b1d1f;
+      text-decoration: none;
+    }
+  }
+  .ui-accordion-content-wrapper {
+    .ui-accordion-content {
+      padding: 1em;
+      border-top: 0;
+      overflow: visible;
+      zoom: 1;
+      border: 0 none;
+      &.ui-widget-content {
+        background: $white;
+        color: #222222;
+      }
+    }
+  }
+}
+
+.ui-state-default {
+  border: 1px solid #d6d6d6;
+  color: $gray-bold;
+}
+
+.ui-corner-all {
+  border-radius: 5px !important;
+}
