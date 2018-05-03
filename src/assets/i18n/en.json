@@ -1,5 +1,12 @@
 {
   "product": {
     "description": "Description"
+  },
+
+  "user": {
+    "msg": {
+      "password_updated": "Your password has been updated."
+    },
+    "password_requirements": "Password must be following: <ul class='text-left no-padding m-l'><li>At least eight characters</li><li>Include uppercase letters of European languages</li><li>Include lowercase letters of European languages</li><li>Include base 10 digits (0 through 9)</li><li>Include non-alphanumeric characters (special characters) (for example, !, $, #, %)</li></ul>"
   }
 }

@@ -11,6 +11,7 @@ import { ErrorModule } from '../shared/partial/error/error.module';
 import { productListRoutes } from './product/product-list/product-list.routing';
 import { productDetailRoutes } from './product/product-detail/product-detail.routing';
 import { cartRoutes } from './cart/cart.routing';
+import { myAccountRoutes } from './my-account/my-account.routing';
 
 const routes: Routes = [
   {
@@ -20,7 +21,8 @@ const routes: Routes = [
       ...dashboardRoutes,
       ...productListRoutes,
       ...productDetailRoutes,
-      ...cartRoutes
+      ...cartRoutes,
+      ...myAccountRoutes
       // {
       //   path: '**',
       //   redirectTo: 'homepage',
