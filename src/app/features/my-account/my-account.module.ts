@@ -6,6 +6,7 @@ import { MyAccountComponent } from './my-account.component';
 import { myProfileRoutes } from './my-profile/my-profile.routing';
 import { dashboardRoutes } from './dashboard/dashboard.routing';
 import { changePasswordRoutes } from './change-password/change-password.routing';
+import { orderHistoryRoutes } from './order-history/order-history.routing';
 
 const routes: Routes = [
   {
@@ -14,7 +15,8 @@ const routes: Routes = [
     children: [
       ...dashboardRoutes,
       ...myProfileRoutes,
-      ...changePasswordRoutes
+      ...changePasswordRoutes,
+      ...orderHistoryRoutes
     ]
   }
 ]
