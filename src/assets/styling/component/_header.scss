@@ -1,2 +1,15 @@
 .header {
+  .search {
+    position: relative;
+  }
+  .search-result {
+    background-color: $white;
+    z-index: 9999;
+    position: absolute;
+    border-radius: 5px !important;
+    width: 400px;
+    max-height: 400px;
+    overflow: auto;
+    padding: 10px;
+  }
 }

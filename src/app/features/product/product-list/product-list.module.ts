@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../../shared/module/shared.module';
 import { ProductListComponent } from './product-list.component';
-import { DropdownModule, PaginatorModule, SliderModule } from 'primeng/primeng';
+import { DropdownModule, PaginatorModule, SliderModule, RatingModule } from 'primeng/primeng';
 import { SidebarModule } from '../../../shared/layout/sidebar/sidebar.module';
+
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
     PaginatorModule,
     SliderModule,
     SidebarModule,
+    RatingModule,
     RouterModule.forChild(routes)
   ],
   declarations: [

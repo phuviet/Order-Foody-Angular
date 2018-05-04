@@ -16,7 +16,13 @@
           <ng-template ngFor let-item [ngForOf]="bestSellersProduct">
             <div class="item">
               <a [routerLink]="['/product-detail', item?.id]"><img src="http://localhost:3000{{ item?.avatar }}" alt="{{ item?.name }}"></a>
-              <h3><a [routerLink]="['/product-detail', item?.id]">{{ item?.name }}</a></h3>
+              <h3 class="margin-bottom-5"><a [routerLink]="['/product-detail', item?.id]">{{ item?.name }}</a></h3>
+              <div class="price margin-bottom-5">
+                <p-rating [stars]="5"
+                          [cancel]="false"
+                          [ngModel]="item?.star"
+                          [readonly]="true"></p-rating>
+              </div>
               <div class="price">{{ item?.price }}</div>
             </div>
           </ng-template>
@@ -51,7 +57,7 @@
           </div>
         </div>
         <ng-template ngFor let-item [ngForOf]="datatableConfigs.value">
-          <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="col-md-4 col-sm-6 col-xs-12 margin-bottom-20">
             <div class="product-item">
               <div class="pi-img-wrapper">
                 <img src="http://localhost:3000{{ item?.avatar }}" class="img-responsive" alt="{{ item?.name }}">
@@ -61,6 +67,12 @@
                 </div>
               </div>
               <h3><a [routerLink]="['/product-detail', item?.id]">{{ item?.name }}</a></h3>
+              <div class="margin-bottom-10">
+                <p-rating [stars]="5"
+                          [cancel]="false"
+                          [ngModel]="item?.star"
+                          [readonly]="true"></p-rating>
+              </div>
               <div class="pi-price">{{ item?.price }}</div>
               <a (click)="addToCart(item)" class="btn btn-default add2cart">Add to cart</a>
             </div>

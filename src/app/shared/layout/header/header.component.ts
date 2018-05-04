@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService, NotificationService, CartService, AuthService } from '../../../core/service/index';
+import { parseQuery } from '../../../shared/function/url';
 
 @Component({
   selector: 'app-header',
@@ -10,8 +11,13 @@ export class HeaderComponent implements OnInit {
   userInfo: any;
   categories: any;
   topNewestProduct: any;
+  watchedProduct: any;
   currentCart: any;
   totalPriceCart: number;
+  searchProduct: any;
+  params: any;
+  timeout: any;
+  isTimeout: boolean;
 
   constructor(
     private api: ApiService,
@@ -19,6 +25,9 @@ export class HeaderComponent implements OnInit {
     private cart: CartService,
     private auth: AuthService
   ) {
+    this.isTimeout = false;
+    this.params = {};
+    this.searchProduct = [];
     this.userInfo = this.auth.getUserInfo();
     this.topNewestProduct = [];
   }
@@ -65,6 +74,10 @@ export class HeaderComponent implements OnInit {
     this.cart.updateTotalPriceCart();
   }
 
+  addToCart(product: any, quantity: number = 1) {
+    this.ns.cart(product, quantity);
+  }
+
   logout() {
     this.auth.logout();
   }
@@ -72,7 +85,8 @@ export class HeaderComponent implements OnInit {
   fetchData() {
     this.api.multiple(
       { uri: ['categories'], method: 'GET' },
-      { uri: ['products', 'newest'], method: 'GET' }
+      { uri: ['products', 'newest'], method: 'GET' },
+      { uri: ['products', 'watched'], method: 'GET' }
     ).subscribe(
       (data: any) => {
         if (data[0]) {
@@ -81,11 +95,36 @@ export class HeaderComponent implements OnInit {
         if (data[1]) {
           this.topNewestProduct = data[1];
         }
+        if (data[2]) {
+          this.watchedProduct = data[2];
+        }
       }, (error: any) => {
         //
       }, () => {
         //
       }
     )
+  }
+
+  search() {
+    this.isTimeout = false;
+    if (this.params.name_cont) {
+      let _params: any = parseQuery(this.params);
+      clearTimeout(this.timeout);
+      this.timeout = setTimeout(() => {
+        this.api.get([`products${_params}`]).subscribe(
+          (data: any) => {
+            this.searchProduct = data.products;
+          }, (error: any) => {
+            //
+          }, () => {
+            this.isTimeout = true;
+            clearTimeout(this.timeout);
+          }
+        )
+      }, 2000);
+    } else {
+      this.searchProduct = [];
+    }
   }
 }

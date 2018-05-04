@@ -13,6 +13,7 @@ export class MyProfileComponent implements OnInit {
   isProcessing: any;
   form: FormGroup
   userProfile: any;
+  year: any;
 
   constructor(
     private api: ApiService,
@@ -20,6 +21,7 @@ export class MyProfileComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.isProcessing = false;
+    this.year = new Date().getFullYear() - 18;
   }
 
   ngOnInit() {

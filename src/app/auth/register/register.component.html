@@ -1,0 +1,25 @@
+<h2>Register</h2>
+<form role="form" class="login-form" [formGroup]="registerForm">
+  <div class="form-group">
+    <label for="form-username">Email <span class="require">*</span></label>
+    <input formControlName="email" type="email" name="email" placeholder="Email..." class="form-input form-control">
+  </div>
+  <div class="form-group">
+    <label for="form-password">Password</label>
+    <div class="input-group form-input">
+      <input formControlName="password" type="password" name="password" placeholder="Password..."
+             class="form-password form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="form-password">Confirm Password</label>
+    <div class="input-group form-input">
+      <input formControlName="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm password..."
+              class="form-password form-control">
+    </div>
+  </div>
+  <button (click)="register()"
+          [disabled]="!registerForm.valid || !isPasswordMatch() || isProcessing"
+          type="submit"
+          class="btn btn-primary form-button">Register!</button>
+</form>
