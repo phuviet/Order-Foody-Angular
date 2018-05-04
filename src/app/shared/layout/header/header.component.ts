@@ -74,10 +74,6 @@ export class HeaderComponent implements OnInit {
     this.cart.updateTotalPriceCart();
   }
 
-  addToCart(product: any, quantity: number = 1) {
-    this.ns.cart(product, quantity);
-  }
-
   logout() {
     this.auth.logout();
   }
@@ -126,5 +122,10 @@ export class HeaderComponent implements OnInit {
     } else {
       this.searchProduct = [];
     }
+  }
+
+  clearSearchKey() {
+    this.params.name_cont = '';
+    this.searchProduct = [];
   }
 }

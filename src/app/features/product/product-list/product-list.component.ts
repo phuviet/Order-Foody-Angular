@@ -68,7 +68,19 @@ export class ProductListComponent implements OnInit {
   }
 
   addToCart(product: any, quantity: number = 1) {
-    this.ns.cart(product, quantity);
+    this.ns.progress(true);
+    setTimeout(() => {
+      this.ns.message({
+        type: 'success',
+        msg: 'order.add_to_cart_success',
+        msgObj: {
+          product: product.name,
+          quantity: quantity
+        }
+      });
+      this.ns.cart(product, quantity);
+      this.ns.progress(false);
+    }, 700)
   }
 
   fetchData() {
