@@ -1,0 +1,27 @@
+<h2>Confirm Register</h2>
+<form role="form" class="login-form" [formGroup]="confirmRegisterForm">
+  <div class="form-group">
+    <label>First Name <span class="require">*</span></label>
+    <input formControlName="first_name" name="first_name" placeholder="First name..." class="form-input form-control">
+  </div>
+  <div class="form-group">
+    <label>Middle Name <span class="require">*</span></label>
+    <input formControlName="middle_name" name="middle_name" placeholder="Middle name..." class="form-input form-control">
+  </div>
+  <div class="form-group">
+    <label>Last Name <span class="require">*</span></label>
+    <input formControlName="last_name" name="last_name" placeholder="Last name..." class="form-input form-control">
+  </div>
+  <div class="form-group">
+    <label>Phone <span class="require">*</span></label>
+    <input formControlName="phone" name="phone" placeholder="Phone..." class="form-input form-control">
+  </div>
+  <div class="form-group">
+    <label>Address <span class="require">*</span></label>
+    <input formControlName="address" name="address" placeholder="Address..." class="form-input form-control">
+  </div>
+  <button (click)="confirmRegister()"
+          [disabled]="!confirmRegisterForm.valid || isProcessing"
+          type="submit"
+          class="btn btn-primary form-button">Confirm!</button>
+</form>

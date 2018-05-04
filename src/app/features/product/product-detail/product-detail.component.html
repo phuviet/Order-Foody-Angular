@@ -9,6 +9,12 @@
             <div class="item">
               <a [routerLink]="['/product-detail', item?.id]"><img src="http://localhost:3000{{ item?.avatar }}" alt="{{ item?.name }}"></a>
               <h3><a [routerLink]="['/product-detail', item?.id]">{{ item?.name }}</a></h3>
+              <div class="price margin-bottom-5">
+                <p-rating [stars]="5"
+                          [cancel]="false"
+                          [ngModel]="item?.star"
+                          [readonly]="true"></p-rating>
+              </div>
               <div class="price">{{ item?.price }}</div>
             </div>
           </ng-template>
@@ -33,8 +39,8 @@
               <h1>{{ product?.name }}</h1>
               <div class="price-availability-block clearfix">
                 <div class="price">
-                  <strong><span>$</span>47.00</strong>
-                  <em>$<span>62.00</span></em>
+                  <strong>{{ product?.price }}</strong>
+                  <!-- <em>$<span>62.00</span></em> -->
                 </div>
                 <!-- <div class="availability">
                   Availability: <strong>In Stock</strong>

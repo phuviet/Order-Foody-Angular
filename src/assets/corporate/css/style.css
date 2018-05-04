@@ -139,6 +139,10 @@ Misc tools
 	margin-top: 10px !important;
 }
 
+.backLeft {
+	background: #e74c3c url(../../img/logo-auth.jpeg);
+}
+
 .margin-top-25 {
 	margin-top: 25px !important;
 }
@@ -283,7 +287,7 @@ Custom Scrollbars
 }  
 
 ::-webkit-scrollbar-track {  
-    background-color: #eaeaea;  
+    /* background-color: #eaeaea;   */
     border-left: 1px solid #cecece;  
 }  
 
@@ -491,7 +495,7 @@ body.page-header-fixed {
 	margin: 0 10px 0 0;
 	padding: 0;
 	float: left;
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 }
 .header-navigation ul {
 	margin: 0;

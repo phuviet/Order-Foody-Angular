@@ -31,12 +31,12 @@
         <div class="col-md-6 col-sm-6 additional-nav">
           <ul class="list-unstyled list-inline pull-right">
             <li *ngIf="userInfo && userInfo?.id">
-              Hello&nbsp;<a>{{ userInfo?.full_name }}!</a>
+              Hello&nbsp;<a [routerLink]="['/my-account']">{{ userInfo?.full_name }}!</a>
             </li>
             <li *ngIf="userInfo && userInfo?.id"><a [routerLink]="['/my-account']">My Account</a></li>
             <!-- <li><a href="shop-checkout.html">Checkout</a></li> -->
             <li *ngIf="userInfo && userInfo?.id; else logIn">
-                <a (click)="logout()">Log Out</a>
+              <a (click)="logout()">Log Out</a>
             </li>
             <ng-template #logIn>
               <li><a [routerLink]="['/auth', 'login']">Log In</a></li>
@@ -259,50 +259,18 @@
 
           <li class="dropdown dropdown100 nav-catalogue">
             <a class="dropdown-toggle" data-toggle="dropdown" data-target="" href="javascript:;">
-              HISTORY
+              History
             </a>
             <ul class="dropdown-menu">
               <li>
                 <div class="header-navigation-content">
                   <div class="row">
-                    <div class="col-md-3 col-sm-4 col-xs-6">
+                    <div *ngFor="let itemWatched of (watchedProduct | slice: 0:4)" class="col-md-3 col-sm-4 col-xs-6">
                       <div class="product-item">
                         <div class="pi-img-wrapper">
-                          <a href="shop-item.html"><img src="../../assets/pages/img/products/model4.jpg" class="img-responsive" alt="Berry Lace Dress"></a>
+                          <a [routerLink]="['/product-detail', itemWatched?.id]"><img src="http://localhost:3000{{ itemWatched?.avatar }}" class="img-responsive" alt="{{ watchedProduct?.name }}"></a>
                         </div>
-                        <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-                        <div class="pi-price">$29.00</div>
-                        <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-                      </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-xs-6">
-                      <div class="product-item">
-                        <div class="pi-img-wrapper">
-                          <a href="shop-item.html"><img src="../../assets/pages/img/products/model3.jpg" class="img-responsive" alt="Berry Lace Dress"></a>
-                        </div>
-                        <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-                        <div class="pi-price">$29.00</div>
-                        <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-                      </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-xs-6">
-                      <div class="product-item">
-                        <div class="pi-img-wrapper">
-                          <a href="shop-item.html"><img src="../../assets/pages/img/products/model7.jpg" class="img-responsive" alt="Berry Lace Dress"></a>
-                        </div>
-                        <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-                        <div class="pi-price">$29.00</div>
-                        <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-                      </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-xs-6">
-                      <div class="product-item">
-                        <div class="pi-img-wrapper">
-                          <a href="shop-item.html"><img src="../../assets/pages/img/products/model4.jpg" class="img-responsive" alt="Berry Lace Dress"></a>
-                        </div>
-                        <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-                        <div class="pi-price">$29.00</div>
-                        <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                        <h3><a [routerLink]="['/product-detail', itemWatched?.id]">{{ itemWatched?.name }}</a></h3>
                       </div>
                     </div>
                   </div>
@@ -318,20 +286,16 @@
                 <span class="sep"></span>
                 <i class="fa fa-search search-btn"></i>
               </div>
-              <div class="pull-right dropdown-sm">
-                <input type="text" placeholder="Search" class="form-control">
+              <div class="search pull-right dropdown-sm">
+                <input [(ngModel)]="params.name_cont" (input)="search()" type="text" placeholder="Search" class="form-control">
+                <div *ngIf="searchProduct?.length" class="search-result">
+                  
+                </div>
+                <div *ngIf="!searchProduct?.length && params.name_cont && isTimeout" class="search-result">
+                  <span>Not Found</span>
+                </div>
               </div>
             </div>
-            <!-- <div class="search-box">
-              <form action="">
-                <div class="input-group">
-                  <input type="text" placeholder="Search" class="form-control">
-                  <span class="input-group-btn">
-                    <button class="btn btn-primary" type="submit">Search</button>
-                  </span>
-                </div>
-              </form>
-            </div> -->
           </li>
           <!-- END TOP SEARCH -->
         </ul>
@@ -339,4 +303,5 @@
       <!-- END NAVIGATION -->
     </div>
   </div>
+</div>
   <!-- Header END -->

@@ -3,55 +3,58 @@
     <div class="row margin-bottom-40">
       <div class="col-md-12 col-sm-12">
         <h1>Shopping cart</h1>
-        <div class="goods-page">
-          <div class="goods-data clearfix">
-            <div class="table-wrapper-responsive">
-            <table summary="Shopping cart">
-              <tr>
-                <th class="goods-page-image">Image</th>
-                <th class="goods-page-description">Description</th>
-                <th class="goods-page-quantity">Quantity</th>
-                <th class="goods-page-price">Unit price</th>
-                <th class="goods-page-total" colspan="2">Total</th>
-              </tr>
-              <tr *ngFor="let orderItem of currentCart">
-                <td class="goods-page-image">
-                  <a href="javascript:;"><img src="http://localhost:3000{{ orderItem?.avatar }}" alt="{{ orderItem?.name }}"></a>
-                </td>
-                <td class="goods-page-description">
-                  <h3><a [routerLink]="['/product-detail', orderItem?.id]">{{ orderItem?.name }}</a></h3>
-                  <a [ngStyle]="{ 'color': 'white' }" [routerLink]="['/product-detail', orderItem?.id]"></a><em>More info is here</em>
-                </td>
-                <td class="goods-page-quantity">
-                  <div class="product-quantity">
-                    <input id="product-quantity" (input)="updateQuantityItemCart(orderItem?.id, $event.target.value)" type="number" min="1" value="{{ orderItem?.quantity }}" class="form-control input-sm">
-                  </div>
-                </td>
-                <td class="goods-page-price">
-                  <strong>{{ orderItem?.price }}</strong>
-                </td>
-                <td class="goods-page-total">
-                  <strong>{{ orderItem?.total }}</strong>
-                </td>
-                <td class="del-goods-col">
-                  <a (click)="removeItemCart(orderItem?.id)" class="del-goods">&nbsp;</a>
-                </td>
-              </tr>
-            </table>
+        <span *ngIf="!currentCart.length; else other">Your shopping cart is empty!</span>
+        <ng-template #other>
+          <div class="goods-page">
+            <div class="goods-data clearfix">
+              <div class="table-wrapper-responsive">
+              <table summary="Shopping cart">
+                <tr>
+                  <th class="goods-page-image">Image</th>
+                  <th class="goods-page-description">Description</th>
+                  <th class="goods-page-quantity">Quantity</th>
+                  <th class="goods-page-price">Unit price</th>
+                  <th class="goods-page-total" colspan="2">Total</th>
+                </tr>
+                <tr *ngFor="let orderItem of currentCart">
+                  <td class="goods-page-image">
+                    <a href="javascript:;"><img src="http://localhost:3000{{ orderItem?.avatar }}" alt="{{ orderItem?.name }}"></a>
+                  </td>
+                  <td class="goods-page-description">
+                    <h3><a [routerLink]="['/product-detail', orderItem?.id]">{{ orderItem?.name }}</a></h3>
+                    <a [ngStyle]="{ 'color': 'white' }" [routerLink]="['/product-detail', orderItem?.id]"></a><em>More info is here</em>
+                  </td>
+                  <td class="goods-page-quantity">
+                    <div class="product-quantity">
+                      <input id="product-quantity" (input)="updateQuantityItemCart(orderItem?.id, $event.target.value)" type="number" min="1" value="{{ orderItem?.quantity }}" class="form-control input-sm">
+                    </div>
+                  </td>
+                  <td class="goods-page-price">
+                    <strong>{{ orderItem?.price }}</strong>
+                  </td>
+                  <td class="goods-page-total">
+                    <strong>{{ orderItem?.total }}</strong>
+                  </td>
+                  <td class="del-goods-col">
+                    <a (click)="removeItemCart(orderItem?.id)" class="del-goods">&nbsp;</a>
+                  </td>
+                </tr>
+              </table>
+              </div>
+  
+              <div class="shopping-total">
+                <ul>
+                  <li class="shopping-total-price">
+                    <em>Total</em>
+                    <strong class="price">{{ totalPriceCart }}</strong>
+                  </li>
+                </ul>
+              </div>
             </div>
-
-            <div class="shopping-total">
-              <ul>
-                <li class="shopping-total-price">
-                  <em>Total</em>
-                  <strong class="price">{{ totalPriceCart }}</strong>
-                </li>
-              </ul>
-            </div>
+            <a [routerLink]="['/homepage']" class="btn btn-default" type="submit">Continue shopping <i class="fa fa-shopping-cart"></i></a>
+            <a class="btn btn-primary" type="submit">Checkout <i class="fa fa-check"></i></a>
           </div>
-          <a [routerLink]="['/homepage']" class="btn btn-default" type="submit">Continue shopping <i class="fa fa-shopping-cart"></i></a>
-          <a class="btn btn-primary" type="submit">Checkout <i class="fa fa-check"></i></a>
-        </div>
+        </ng-template>
       </div>
     </div>
   </div>

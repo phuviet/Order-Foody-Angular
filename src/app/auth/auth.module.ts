@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { AuthComponent } from './auth.component';
 import { Routes, RouterModule } from '@angular/router';
+import { RegisterComponent } from './register/register.component';
+import { ErrorModule } from '../shared/partial/error/error.module';
 
 const routes: Routes = [
   {
@@ -11,10 +13,14 @@ const routes: Routes = [
         path: 'login',
         loadChildren: 'app/auth/login/login.module#LoginModule'
       },
-      // {
-      //   path: 'forgot-password',
-      //   loadChildren: 'app/auth/forgot-password/forgot-password.module#ForgotPasswordModule'
-      // },
+      {
+        path: 'register',
+        loadChildren: 'app/auth/register/register.module#RegisterModule'
+      },
+      {
+        path: 'confirm-register',
+        loadChildren: 'app/auth/confirm-register/confirm-register.module#ConfirmRegisterModule'
+      }
       // {
       //   path: 'reset-password',
       //   children: [
@@ -38,6 +44,7 @@ const routes: Routes = [
     AuthComponent
   ],
   imports: [
+    ErrorModule,
     RouterModule.forChild(routes)
   ]
 })
