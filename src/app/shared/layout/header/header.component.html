@@ -72,7 +72,7 @@
                     <img src="http://localhost:3000{{ itemCart?.avatar }}" alt="{{ itemCart?.name }}" width="37" height="34">
                   </a>
                   <span class="cart-content-count">x {{ itemCart?.quantity }}</span>
-                  <strong><a href="shop-itemCart.html">{{ itemCart?.name }}</a></strong>
+                  <strong><a [routerLink]="['/product-detail', itemCart?.id]">{{ itemCart?.name }}</a></strong>
                   <em>{{ itemCart?.total }}</em>
                   <a (click)="removeItemCart(itemCart.id)" class="del-goods">&nbsp;</a>
                 </li>
@@ -289,10 +289,23 @@
               <div class="search pull-right dropdown-sm">
                 <input [(ngModel)]="params.name_cont" (input)="search()" type="text" placeholder="Search" class="form-control">
                 <div *ngIf="searchProduct?.length" class="search-result">
-                  
+                  <table class="table-search-result full-screen">
+                    <tbody>
+                      <tr *ngFor="let item of searchProduct">
+                        <td class="margin-right-20">
+                          <a (click)="clearSearchKey()" [routerLink]="['/product-detail', item?.id]">
+                            <img width="37" height="34" src="http://localhost:3000{{ item?.avatar }}" alt="">
+                          </a>
+                        </td>
+                        <td>
+                          <a (click)="clearSearchKey()" [routerLink]="['/product-detail', item?.id]">{{ item?.name }}</a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
                 <div *ngIf="!searchProduct?.length && params.name_cont && isTimeout" class="search-result">
-                  <span>Not Found</span>
+                  <span>There is no suitable food!</span>
                 </div>
               </div>
             </div>

@@ -12,5 +12,9 @@
       "register_success": "You had been registered, please check mail to confirm your account!",
       "confirm_register_success": "You had been confirmed successfully, please login to enjoy!"
     }
+  },
+
+  "order": {
+    "add_to_cart_success": "{{quantity}} {{product}} has been added to cart."
   }
 }
