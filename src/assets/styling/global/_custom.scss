@@ -90,3 +90,19 @@
   color: $text-color;
   font-weight: 700;
 }
+
+.abc-radio {
+  padding-left: 10px;
+  label {
+    padding-top: 4px;
+    padding-left: 10px !important;
+    &:after {
+      background-color: $navy;
+    }
+  }
+}
+.radio-inline {
+  +.radio-inline {
+    margin-left: 20px;
+  }
+}

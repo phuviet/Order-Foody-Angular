@@ -26,7 +26,9 @@
                   </td>
                   <td class="goods-page-quantity">
                     <div class="product-quantity">
-                      <input id="product-quantity" (input)="updateQuantityItemCart(orderItem?.id, $event.target.value)" type="number" min="1" value="{{ orderItem?.quantity }}" class="form-control input-sm">
+                      <input id="product-quantity" #input type="text" min="1" value="{{ orderItem?.quantity }}" class="form-control input-sm">
+                      <button (click)="updateQuantityItemCart(orderItem?.id, input.value, 'plus')">+</button>
+                      <button (click)="updateQuantityItemCart(orderItem?.id, input.value, 'diff')">-</button>
                     </div>
                   </td>
                   <td class="goods-page-price">
@@ -36,12 +38,11 @@
                     <strong>{{ orderItem?.total }}</strong>
                   </td>
                   <td class="del-goods-col">
-                    <a (click)="removeItemCart(orderItem?.id)" class="del-goods">&nbsp;</a>
+                    <a (click)="removeItemCart(orderItem)" class="del-goods">&nbsp;</a>
                   </td>
                 </tr>
               </table>
               </div>
-  
               <div class="shopping-total">
                 <ul>
                   <li class="shopping-total-price">

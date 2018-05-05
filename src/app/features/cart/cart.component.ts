@@ -11,7 +11,8 @@ export class CartComponent implements OnInit {
   totalPriceCart: number;
 
   constructor(
-    private cart: CartService
+    private cart: CartService,
+    private ns: NotificationService
   ) {
   }
 
@@ -27,15 +28,36 @@ export class CartComponent implements OnInit {
       this.currentCart = JSON.parse(localStorage.getItem('cart'));
     }
     this.cart.updateTotalPriceCart();
+    this.cart.updateTotalItem();
   }
 
-  removeItemCart(id: any) {
-    this.cart.removeItemCart(id);
-    this.cart.updateTotalPriceCart();
+  removeItemCart(orderItem: any) {
+    this.ns.progress(true);
+    setTimeout(() => {
+      this.ns.message({
+        type: 'success',
+        msg: 'order.remove_from_cart_success',
+        msgObj: {
+          product: orderItem.name
+        }
+      });
+      this.cart.removeItemCart(orderItem.id);
+      this.cart.updateTotalPriceCart();
+      this.cart.updateTotalItem();
+      this.ns.progress(false);
+    }, 500)
   }
 
-  updateQuantityItemCart(id: any, quantity: any) {
+  updateQuantityItemCart(id: any, quantity: any, key: string) {
+    if (key === 'diff') {
+      if (+quantity > 1) {
+        quantity = +quantity - 1;
+      }
+    } else {
+      quantity = +quantity + 1;
+    }
     this.cart.updateQuantityItemCart(id, quantity);
     this.cart.updateTotalPriceCart();
+    this.cart.updateTotalItem();
   }
 }

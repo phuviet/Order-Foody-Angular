@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
   params: any;
   timeout: any;
   isTimeout: boolean;
+  totalItem: number;
 
   constructor(
     private api: ApiService,
@@ -25,6 +26,7 @@ export class HeaderComponent implements OnInit {
     private cart: CartService,
     private auth: AuthService
   ) {
+    this.totalItem = 0;
     this.isTimeout = false;
     this.params = {};
     this.searchProduct = [];
@@ -38,6 +40,9 @@ export class HeaderComponent implements OnInit {
         this.checkExistProductInCart(data);
       }
     });
+    this.cart.totalItem$.subscribe((totalItem: any) => {
+      this.totalItem = totalItem;
+    });
     this.cart.price$.subscribe((totalPrice: any) => {
       this.totalPriceCart = totalPrice;
     });
@@ -49,7 +54,11 @@ export class HeaderComponent implements OnInit {
       this.currentCart = JSON.parse(localStorage.getItem('cart'));
     }
     this.cart.updateTotalPriceCart();
+    this.cart.updateTotalItem();
     this.fetchData();
+    if (this.userInfo.id) {
+      this.fetchProductWatched();
+    }
   }
 
   checkExistProductInCart(data: any) {
@@ -67,11 +76,13 @@ export class HeaderComponent implements OnInit {
     }
     localStorage.setItem('cart', JSON.stringify(this.currentCart));
     this.cart.updateTotalPriceCart();
+    this.cart.updateTotalItem();
   }
 
   removeItemCart(id: any) {
     this.cart.removeItemCart(id);
     this.cart.updateTotalPriceCart();
+    this.cart.updateTotalItem();
   }
 
   logout() {
@@ -81,8 +92,7 @@ export class HeaderComponent implements OnInit {
   fetchData() {
     this.api.multiple(
       { uri: ['categories'], method: 'GET' },
-      { uri: ['products', 'newest'], method: 'GET' },
-      { uri: ['products', 'watched'], method: 'GET' }
+      { uri: ['products', 'newest'], method: 'GET' }
     ).subscribe(
       (data: any) => {
         if (data[0]) {
@@ -91,9 +101,18 @@ export class HeaderComponent implements OnInit {
         if (data[1]) {
           this.topNewestProduct = data[1];
         }
-        if (data[2]) {
-          this.watchedProduct = data[2];
-        }
+      }, (error: any) => {
+        //
+      }, () => {
+        //
+      }
+    )
+  }
+
+  fetchProductWatched() {
+    this.api.get(['products', 'watched']).subscribe(
+      (data: any) => {
+        this.watchedProduct = data;
       }, (error: any) => {
         //
       }, () => {
