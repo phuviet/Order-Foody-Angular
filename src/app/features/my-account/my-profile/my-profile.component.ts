@@ -14,6 +14,7 @@ export class MyProfileComponent implements OnInit {
   form: FormGroup
   userProfile: any;
   year: any;
+  metadata: any;
 
   constructor(
     private api: ApiService,
@@ -21,6 +22,12 @@ export class MyProfileComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.isProcessing = false;
+    this.metadata = {
+      genders: [
+        { value: 'male', label: 'Male'},
+        { value: 'female', label: 'Female'}
+      ]
+    }
     this.year = new Date().getFullYear() - 18;
   }
 
@@ -40,7 +47,8 @@ export class MyProfileComponent implements OnInit {
       ])],
       phone: ['', Validators.required],
       address: ['', Validators.required],
-      birthday: ['', Validators.required]
+      birthday: ['', Validators.required],
+      gender: ['', Validators.required]
     });
   }
 

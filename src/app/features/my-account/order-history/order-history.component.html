@@ -24,32 +24,32 @@
       <div class="col-md-12">
         <div class="clearfix no-padding">
           <div class="table-wrapper-responsive">
-          <table class="full-screen" summary="Shopping cart">
-            <tr>
-              <th class="text-center">Image</th>
-              <th class="text-center">Description</th>
-              <th class="text-center">Quantity</th>
-              <th class="text-center">Unit price</th>
-              <th class="text-center" colspan="2">Total</th>
-            </tr>
-            <tr *ngFor="let orderItem of order?.order_items">
-              <td class="goods-page-image">
-                <a href="javascript:;"><img src="http://localhost:3000{{ orderItem?.product?.avatar }}" alt="{{ orderItem?.name }}"></a>
-              </td>
-              <td class="text-center">
-                <p><a [routerLink]="['/product-detail', orderItem?.product?.id]">{{ orderItem?.product?.name }}</a></p>
-              </td>
-              <td class="text-center">
-                <span>{{ orderItem?.quantity }}</span>
-              </td>
-              <td class="text-center">
-                <span>{{ orderItem?.product?.price }}</span>
-              </td>
-              <td class="text-center">
-                <span>{{ orderItem?.total_price }}</span>
-              </td>
-            </tr>
-          </table>
+            <table class="full-screen" summary="Shopping cart">
+              <tr>
+                <th class="text-center">Image</th>
+                <th class="text-center">Description</th>
+                <th class="text-center">Quantity</th>
+                <th class="text-center">Unit price</th>
+                <th class="text-center" colspan="2">Total</th>
+              </tr>
+              <tr *ngFor="let orderItem of order?.order_items">
+                <td class="goods-page-image">
+                  <a href="javascript:;"><img src="http://localhost:3000{{ orderItem?.product?.avatar }}" alt="{{ orderItem?.name }}"></a>
+                </td>
+                <td class="text-center">
+                  <p><a [routerLink]="['/product-detail', orderItem?.product?.id]">{{ orderItem?.product?.name }}</a></p>
+                </td>
+                <td class="text-center">
+                  <span>{{ orderItem?.quantity }}</span>
+                </td>
+                <td class="text-center">
+                  <span>{{ orderItem?.product?.price }}</span>
+                </td>
+                <td class="text-center">
+                  <span>{{ orderItem?.total_price }}</span>
+                </td>
+              </tr>
+            </table>
           </div>
           <div class="row">
             <div class="col-md-6 pull-right text-right" [ngStyle]="{ 'padding-right': '50px' }">
@@ -62,3 +62,48 @@
     </div>
   </p-accordionTab>
 </p-accordion>
+
+<!-- <div class="faq-page">
+  <div *ngFor="let order of orderHistory" class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#accordion1_{{ order?.id }}">
+        1. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry ?
+        </a>
+      </h4>
+    </div>
+    <div id="accordion1_{{ order?.id }}" class="panel-collapse collapse  in">
+      <div class="col-md-12">
+        <div class="clearfix no-padding">
+          <div class="table-wrapper-responsive">
+            <table class="full-screen" summary="Shopping cart">
+              <tr *ngFor="let orderItem of order?.order_items">
+                <td class="goods-page-image">
+                  <a href="javascript:;"><img src="http://localhost:3000{{ orderItem?.product?.avatar }}" alt="{{ orderItem?.name }}"></a>
+                </td>
+                <td class="text-center">
+                  <p><a [routerLink]="['/product-detail', orderItem?.product?.id]">{{ orderItem?.product?.name }}</a></p>
+                </td>
+                <td class="text-center">
+                  <span>{{ orderItem?.quantity }}</span>
+                </td>
+                <td class="text-center">
+                  <span>{{ orderItem?.product?.price }}</span>
+                </td>
+                <td class="text-center">
+                  <span>{{ orderItem?.total_price }}</span>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="row">
+            <div class="col-md-6 pull-right text-right" [ngStyle]="{ 'padding-right': '50px' }">
+              <em>Total:</em>&nbsp;&nbsp;
+              <strong class="price">{{ order?.totalPrice }}</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

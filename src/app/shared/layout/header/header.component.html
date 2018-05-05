@@ -59,7 +59,7 @@
       <!-- BEGIN CART -->
       <div class="top-cart-block">
         <div class="top-cart-info">
-          <a [routerLink]="['/cart']" class="top-cart-info-count">{{ currentCart?.length }} item(s)</a>
+          <a [routerLink]="['/cart']" class="top-cart-info-count">{{ totalItem }} item(s)</a>
           <a [routerLink]="['/cart']" class="top-cart-info-value">{{ totalPriceCart }}</a>
         </div>
         <a [routerLink]="['/cart']"><i class="fa fa-shopping-cart"></i></a>
@@ -195,7 +195,7 @@
           </li>
 
           <li>
-            <a href="#">About Us</a>
+            <a [routerLink]="['/about-us']">About Us</a>
           </li>
 
           <li class="dropdown">

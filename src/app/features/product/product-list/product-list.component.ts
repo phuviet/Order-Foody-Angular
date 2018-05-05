@@ -80,7 +80,7 @@ export class ProductListComponent implements OnInit {
       });
       this.ns.cart(product, quantity);
       this.ns.progress(false);
-    }, 700)
+    }, 500)
   }
 
   fetchData() {
