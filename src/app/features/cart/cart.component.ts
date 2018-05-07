@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService, NotificationService, CartService, AuthService } from '../../core/service/index';
+import { DialogItem } from '../../shared/service/dialog/dialog-item';
+import { CheckoutOrderComponent } from './checkout-order/checkout-order.component';
 
 @Component({
   selector: 'app-cart',
@@ -59,5 +61,24 @@ export class CartComponent implements OnInit {
     this.cart.updateQuantityItemCart(id, quantity);
     this.cart.updateTotalPriceCart();
     this.cart.updateTotalItem();
+  }
+
+  checkoutCart() {
+    let dialog = {
+      type: 'confirm',
+      btnAccept: {
+        txt: 'action.submit',
+        cls: 'btn-primary'
+      },
+      btnReject: {
+        txt: 'action.cancel',
+        cls: 'btn-default'
+      }
+    }
+    this.ns.dialog(new DialogItem(CheckoutOrderComponent, dialog), true).subscribe(
+      (accept: boolean) => {
+        
+      }
+    )
   }
 }

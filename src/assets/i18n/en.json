@@ -23,5 +23,10 @@
   "order": {
     "add_to_cart_success": "{{quantity}} {{product}} has been added to cart.",
     "remove_from_cart_success": "{{product}} has been removed from cart."
+  },
+
+  "action": {
+    "cancel": "Cancel",
+    "submit": "Submit"
   }
 }

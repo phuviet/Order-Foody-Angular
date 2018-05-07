@@ -34,7 +34,7 @@
               </tr>
               <tr *ngFor="let orderItem of order?.order_items">
                 <td class="goods-page-image">
-                  <a href="javascript:;"><img src="http://localhost:3000{{ orderItem?.product?.avatar }}" alt="{{ orderItem?.name }}"></a>
+                  <a href="javascript:;"><img src="http://localhost:3001/{{ orderItem?.product?.avatar }}" alt="{{ orderItem?.name }}"></a>
                 </td>
                 <td class="text-center">
                   <p><a [routerLink]="['/product-detail', orderItem?.product?.id]">{{ orderItem?.product?.name }}</a></p>

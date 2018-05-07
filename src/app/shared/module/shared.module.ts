@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { CustomDialogDirective } from '../../shared/directive/dialog/custom-dialog.directive';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -12,12 +14,14 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateModule
   ],
   declarations: [
+    CustomDialogDirective
   ],
   exports: [
     RouterModule,
     CommonModule,
     FormsModule,
-    TranslateModule
+    TranslateModule,
+    CustomDialogDirective
   ]
 })
 export class SharedModule { }

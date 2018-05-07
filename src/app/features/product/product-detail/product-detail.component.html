@@ -7,7 +7,7 @@
           <h2>Bestsellers</h2>
           <ng-template ngFor let-item [ngForOf]="bestSellersProduct">
             <div class="item">
-              <a [routerLink]="['/product-detail', item?.id]"><img src="http://localhost:3000{{ item?.avatar }}" alt="{{ item?.name }}"></a>
+              <a [routerLink]="['/product-detail', item?.id]"><img src="http://localhost:3001/{{ item?.avatar }}" alt="{{ item?.name }}"></a>
               <h3><a [routerLink]="['/product-detail', item?.id]">{{ item?.name }}</a></h3>
               <div class="price margin-bottom-5">
                 <p-rating [stars]="5"
@@ -25,12 +25,12 @@
           <div class="row">
             <div class="col-md-6 col-sm-6">
               <div class="product-main-image">
-                <img src="http://localhost:3000{{ product?.avatar }}" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="assets/pages/img/products/model7.jpg">
+                <img src="http://localhost:3001/{{ product?.avatar }}" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="assets/pages/img/products/model7.jpg">
               </div>
               <div class="product-other-images">
-                <ng-template ngFor let-image [ngForOf]="product?.products_images">
-                  <a href="assets/pages/img/products/model3.jpg" class="fancybox-button" rel="photos-lib">
-                    <img alt="{{ product?.name }}" src="http://localhost:3000{{ image?.url }}">
+                <ng-template ngFor let-image [ngForOf]="product?.products_images | slice: 0: 3">
+                  <a target="_blank" href="http://localhost:3001/{{ product?.avatar }}" class="fancybox-button" rel="photos-lib">
+                    <img alt="{{ product?.name }}" src="http://localhost:3001/{{ image?.url }}">
                   </a>
                 </ng-template>
               </div>
@@ -123,7 +123,7 @@
                       <div class="parent-comment">
                         <div class="review-item-submitted clearfix">
                           <div class="col-md-6 no-padding">
-                            <img class="image-40 display-inline" src="http://localhost:3000{{ parentItem?.user?.avatar }}" alt="{{ parentItem?.user?.full_name }}">
+                            <img class="image-40 display-inline" src="http://localhost:3001/{{ parentItem?.user?.avatar }}" alt="{{ parentItem?.user?.full_name }}">
                             <strong class="m-l-sm display-inline-block">{{ parentItem?.user?.full_name }}</strong>
                           </div>
                         </div>
@@ -143,7 +143,7 @@
                             <div *ngFor="let childItem of parentItem.child_comments; let lastChild = last">
                               <div class="review-item-submitted clearfix">
                                 <div class="col-md-6 no-padding">
-                                  <img class="image-40 display-inline" src="http://localhost:3000{{ childItem?.user?.avatar }}" alt="">
+                                  <img class="image-40 display-inline" src="http://localhost:3001/{{ childItem?.user?.avatar }}" alt="">
                                   <strong class="m-l-sm display-inline-block">{{ childItem?.user?.full_name }}</strong>
                                 </div>
                               </div>
@@ -226,72 +226,37 @@
                 </div>
               </div>
             </div>
-            <div class="sticker sticker-sale"></div>
+            <!-- <div class="sticker sticker-sale"></div> -->
           </div>
         </div>
       </div>
     </div>
     <div class="row margin-bottom-40">
       <div class="col-md-12 col-sm-12">
-        <h2>Most popular products</h2>
-        <div class="col-md-3">
-          <div class="product-item">
-            <div class="pi-img-wrapper">
-              <img src="assets/pages/img/products/k1.jpg" class="img-responsive" alt="Berry Lace Dress">
-              <div>
-                <a href="assets/pages/img/products/k1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+        <h2>Product Pointer</h2>
+        <ng-template ngFor let-item [ngForOf]="pointerProduct">
+          <div class="col-md-3">
+            <div class="product-item">
+              <div class="pi-img-wrapper">
+                <img src="http://localhost:3001/{{ item?.avatar }}" class="img-responsive" alt="{{ item?.name }}">
+                <div>
+                  <a href="http://localhost:3001/{{ item?.avatar }}" class="btn btn-default fancybox-button">Zoom</a>
+                  <a [routerLink]="['/product-detail', item?.id]" class="btn btn-default fancybox-fast-view">View</a>
+                </div>
               </div>
-            </div>
-            <h3><a href="shop-item.html">Berry Lace Dress</a></h3>
-            <div class="pi-price">$29.00</div>
-            <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            <div class="sticker sticker-new"></div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="product-item">
-            <div class="pi-img-wrapper">
-              <img src="assets/pages/img/products/k2.jpg" class="img-responsive" alt="Berry Lace Dress">
-              <div>
-                <a href="assets/pages/img/products/k2.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+              <h3><a [routerLink]="['/product-detail', item?.id]">{{ item?.name }}</a></h3>
+              <div class="margin-bottom-10">
+                <p-rating [stars]="5"
+                          [cancel]="false"
+                          [ngModel]="item?.star"
+                          [readonly]="true"></p-rating>
               </div>
+              <div class="pi-price">{{ item?.price }}</div>
+              <a (click)="addToCart(item, 1)" class="btn btn-default add2cart">Add to cart</a>
+              <div class="sticker sticker-{{ item?.title }}"></div>
             </div>
-            <h3><a href="shop-item.html">Berry Lace Dress2</a></h3>
-            <div class="pi-price">$29.00</div>
-            <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
           </div>
-        </div>
-        <div class="col-md-3">
-          <div class="product-item">
-            <div class="pi-img-wrapper">
-              <img src="assets/pages/img/products/k3.jpg" class="img-responsive" alt="Berry Lace Dress">
-              <div>
-                <a href="assets/pages/img/products/k3.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-              </div>
-            </div>
-            <h3><a href="shop-item.html">Berry Lace Dress3</a></h3>
-            <div class="pi-price">$29.00</div>
-            <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="product-item">
-            <div class="pi-img-wrapper">
-              <img src="assets/pages/img/products/k4.jpg" class="img-responsive" alt="Berry Lace Dress">
-              <div>
-                <a href="assets/pages/img/products/k4.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
-              </div>
-            </div>
-            <h3><a href="shop-item.html">Berry Lace Dress4</a></h3>
-            <div class="pi-price">$29.00</div>
-            <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
-            <div class="sticker sticker-sale"></div>
-          </div>
-        </div>
+        </ng-template>
       </div>
     </div>
   </div>

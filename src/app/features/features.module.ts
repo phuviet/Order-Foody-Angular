@@ -7,6 +7,7 @@ import { HeaderModule } from '../shared/layout/header/header.module';
 import { FooterModule } from '../shared/layout/footer/footer.module';
 import { ProgressBarModule } from '../shared/partial/progress-bar/progress-bar.module';
 import { ErrorModule } from '../shared/partial/error/error.module';
+import { CustomDialogModule } from '../shared/partial/dialog/dialog.module';
 
 import { productListRoutes } from './product/product-list/product-list.routing';
 import { productDetailRoutes } from './product/product-detail/product-detail.routing';
@@ -60,6 +61,7 @@ const routes: Routes = [
     SharedModule,
     ProgressBarModule,
     ErrorModule,
+    CustomDialogModule,
     RouterModule.forChild(routes)
   ],
   declarations: [
