@@ -18,7 +18,7 @@
                 </tr>
                 <tr *ngFor="let orderItem of currentCart">
                   <td class="goods-page-image">
-                    <a href="javascript:;"><img src="http://localhost:3000{{ orderItem?.avatar }}" alt="{{ orderItem?.name }}"></a>
+                    <a href="javascript:;"><img src="http://localhost:3001/{{ orderItem?.avatar }}" alt="{{ orderItem?.name }}"></a>
                   </td>
                   <td class="goods-page-description">
                     <h3><a [routerLink]="['/product-detail', orderItem?.id]">{{ orderItem?.name }}</a></h3>
@@ -53,7 +53,7 @@
               </div>
             </div>
             <a [routerLink]="['/homepage']" class="btn btn-default" type="submit">Continue shopping <i class="fa fa-shopping-cart"></i></a>
-            <a class="btn btn-primary" type="submit">Checkout <i class="fa fa-check"></i></a>
+            <a (click)="checkoutCart()" class="btn btn-primary" type="submit">Checkout <i class="fa fa-check"></i></a>
           </div>
         </ng-template>
       </div>

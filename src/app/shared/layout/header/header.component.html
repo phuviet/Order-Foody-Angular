@@ -69,7 +69,7 @@
               <ng-template ngFor let-itemCart [ngForOf]="currentCart">
                 <li>
                   <a [routerLink]="['/product-detail', itemCart?.id]">
-                    <img src="http://localhost:3000{{ itemCart?.avatar }}" alt="{{ itemCart?.name }}" width="37" height="34">
+                    <img src="http://localhost:3001/{{ itemCart?.avatar }}" alt="{{ itemCart?.name }}" width="37" height="34">
                   </a>
                   <span class="cart-content-count">x {{ itemCart?.quantity }}</span>
                   <strong><a [routerLink]="['/product-detail', itemCart?.id]">{{ itemCart?.name }}</a></strong>
@@ -268,7 +268,7 @@
                     <div *ngFor="let itemWatched of (watchedProduct | slice: 0:4)" class="col-md-3 col-sm-4 col-xs-6">
                       <div class="product-item">
                         <div class="pi-img-wrapper">
-                          <a [routerLink]="['/product-detail', itemWatched?.id]"><img src="http://localhost:3000{{ itemWatched?.avatar }}" class="img-responsive" alt="{{ watchedProduct?.name }}"></a>
+                          <a [routerLink]="['/product-detail', itemWatched?.id]"><img src="http://localhost:3001/{{ itemWatched?.avatar }}" class="img-responsive" alt="{{ watchedProduct?.name }}"></a>
                         </div>
                         <h3><a [routerLink]="['/product-detail', itemWatched?.id]">{{ itemWatched?.name }}</a></h3>
                       </div>
@@ -294,7 +294,7 @@
                       <tr *ngFor="let item of searchProduct">
                         <td class="margin-right-20">
                           <a (click)="clearSearchKey()" [routerLink]="['/product-detail', item?.id]">
-                            <img width="37" height="34" src="http://localhost:3000{{ item?.avatar }}" alt="">
+                            <img width="37" height="34" src="http://localhost:3001/{{ item?.avatar }}" alt="">
                           </a>
                         </td>
                         <td>

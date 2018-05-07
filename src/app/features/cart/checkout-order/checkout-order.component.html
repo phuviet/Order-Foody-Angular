@@ -1,0 +1,12 @@
+<p-dialog [blockScroll]="true" [closeOnEscape]="false" [draggable]="false" [visible]="isVisible" [width]="dialog?.contentObj?.style?.width || 400" modal="true">
+  <p-header>
+    Viet Nguyen P.
+    <a (click)="close()" class="fa fa-fw fa-close"></a>
+  </p-header>
+  <p-footer>
+    <button class="btn btn-sm {{ dialog?.btnReject?.cls | translate }} btn-cancel" (click)="close()">{{ dialog?.btnReject?.txt | translate }}</button>
+    <button class="btn btn-sm {{ dialog?.btnAccept?.cls | translate }} btn-submit">
+      {{ dialog?.btnAccept?.txt | translate }}
+    </button>
+  </p-footer>
+</p-dialog>

@@ -92,7 +92,8 @@ export class HeaderComponent implements OnInit {
   fetchData() {
     this.api.multiple(
       { uri: ['categories'], method: 'GET' },
-      { uri: ['products', 'newest'], method: 'GET' }
+      { uri: ['products', 'newest'], method: 'GET' },
+      { uri: ['shop_detail'], method: 'GET'}
     ).subscribe(
       (data: any) => {
         if (data[0]) {
@@ -100,6 +101,9 @@ export class HeaderComponent implements OnInit {
         }
         if (data[1]) {
           this.topNewestProduct = data[1];
+        }
+        if (data[2]) {
+          localStorage.setItem('shop_detail', JSON.stringify(data[2]));
         }
       }, (error: any) => {
         //

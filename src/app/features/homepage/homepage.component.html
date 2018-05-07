@@ -94,7 +94,7 @@
             <div class="col-md-3">
               <div class="product-item">
                 <div class="pi-img-wrapper">
-                  <img src="http://localhost:3000{{ item?.avatar }}" class="img-responsive" alt="{{ item?.name }}">
+                  <img src="http://localhost:3001/{{ item?.avatar }}" class="img-responsive" alt="{{ item?.name }}">
                   <div>
                     <a href="../../assets/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Zoom</a>
                     <a [routerLink]="['/product-detail', item?.id]" class="btn btn-default fancybox-fast-view">View</a>
@@ -112,7 +112,7 @@
                   {{ item?.price }}
                 </div>
                 <button (click)="addToCart(item)" class="btn btn-default add2cart">Add to cart</button>
-                <div class="sticker sticker-sale"></div>
+                <!-- <div class="sticker sticker-sale"></div> -->
               </div>
             </div>
           </ng-template>
@@ -129,7 +129,7 @@
             <div class="col-md-4">
               <div class="product-item">
                 <div class="pi-img-wrapper">
-                  <img src="http://localhost:3000{{ item?.avatar }}" class="img-responsive" alt="{{ item?.name }}">
+                  <img src="http://localhost:3001/{{ item?.avatar }}" class="img-responsive" alt="{{ item?.name }}">
                   <div>
                     <a href="../../assets/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Zoom</a>
                     <a [routerLink]="['/product-detail', item?.id]" class="btn btn-default fancybox-fast-view">View</a>
@@ -147,7 +147,7 @@
                   {{ item?.price }}
                 </div>
                 <a (click)="addToCart(item)" class="btn btn-default add2cart">Add to cart</a>
-                <div class="sticker sticker-sale"></div>
+                <div class="sticker sticker-new"></div>
               </div>
             </div>
           </ng-template>

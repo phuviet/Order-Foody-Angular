@@ -17,6 +17,7 @@ export class ProductDetailComponent implements OnInit {
   product: any;
   quantity: number;
   bestSellersProduct: any;
+  pointerProduct: any;
 
   constructor(
     private api: ApiService,
@@ -93,7 +94,8 @@ export class ProductDetailComponent implements OnInit {
   fetchData() {
     this.api.multiple(
       { uri: ['products', this.productId], method: 'GET' },
-      { uri: ['products', 'sellers'], method: 'GET' }
+      { uri: ['products', 'sellers'], method: 'GET' },
+      { uri: ['products', 'pointer'], method: 'GET' }
     ).subscribe(
       (data: any) => {
         if (data[0]) {
@@ -103,6 +105,12 @@ export class ProductDetailComponent implements OnInit {
         }
         if (data[1]) {
           this.bestSellersProduct = data[1];
+        }
+        if (data[2]) {
+          this.pointerProduct = [
+            ...(data[2].products_new.map((item: any) => { item.title = 'new'; return item })),
+            ...(data[2].products_seller.map((item: any) => { item.title = 'seller'; return item }))
+          ];
         }
       }, (error: any) => {
         //

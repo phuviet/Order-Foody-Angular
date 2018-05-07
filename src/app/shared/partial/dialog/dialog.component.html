@@ -1,0 +1,28 @@
+<div dialogContent></div>
+<ng-template [ngIf]="!isDynamic">
+  <p-dialog [blockScroll]="true" [closeOnEscape]="false" [draggable]="false" [visible]="isVisible" [width]="dialog?.contentObj?.style?.width || 500" modal="true">
+    <p-header>
+      {{ dialog?.header | translate }}
+      <a (click)="close()" class="fa fa-fw fa-close"></a>
+    </p-header>
+    <!-- <ng-template [ngIf]="dialog.contentType === 'html'">
+      <ng-template [ngIf]="dialog.contentObj.type === 'usage'">
+        <div [innerHTML]="dialog.content | safeHtml">
+        </div>
+      </ng-template>
+    </ng-template> -->
+    <h1>Viet Nguyen P.</h1>
+    <ng-template [ngIf]="dialog.contentType !== 'html'">
+      {{ dialog?.content | translate:dialog?.contentObj }}
+    </ng-template>
+    <p-footer>
+      <ng-template [ngIf]="dialog.type === 'alert'">
+        <button class="btn btn-sm {{ dialog?.btnClose?.cls | translate }}" (click)="close()">{{ dialog?.btnClose?.txt | translate }}</button>
+      </ng-template>
+      <ng-template [ngIf]="dialog.type === 'confirm'">
+        <button class="btn btn-sm {{ dialog?.btnReject?.cls | translate }} btn-cancel" (click)="close()">{{ dialog?.btnReject?.txt | translate }}</button>
+        <button class="btn btn-sm {{ dialog?.btnAccept?.cls | translate }} btn-submit" (click)="accept()">{{ dialog?.btnAccept?.txt | translate }}</button>
+      </ng-template>
+    </p-footer>
+  </p-dialog>
+</ng-template>
