@@ -143,7 +143,7 @@
                             <div *ngFor="let childItem of parentItem.child_comments; let lastChild = last">
                               <div class="review-item-submitted clearfix">
                                 <div class="col-md-6 no-padding">
-                                  <img class="image-40 display-inline" src="http://localhost:3001/{{ childItem?.user?.avatar }}" alt="">
+                                  <img class="image-40 display-inline" src="http://localhost:3001/{{ childItem?.user?.avatar }}" alt="{{ childItem?.user?.full_name }}">
                                   <strong class="m-l-sm display-inline-block">{{ childItem?.user?.full_name }}</strong>
                                 </div>
                               </div>

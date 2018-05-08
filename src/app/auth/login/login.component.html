@@ -1,19 +1,19 @@
-<h2>Login into our shop</h2>
+<h2>{{ 'auth.login_into_shop' | translate }}</h2>
 <form role="form" class="login-form" [formGroup]="loginForm">
   <div class="form-group">
-    <label for="form-username">Email</label>
-    <input formControlName="email" type="email" name="email" placeholder="Email..." class="form-input form-control" ngModel>
+    <label for="form-username">{{ 'auth.email' | translate }}</label>
+    <input formControlName="email" type="email" name="email" placeholder="{{ 'auth.email' | translate }}..." class="form-input form-control">
   </div>
   <div class="form-group">
-    <label for="form-password">Password</label>
+    <label for="form-password">{{ 'auth.password' | translate }}</label>
     <div class="input-group form-input">
-      <input formControlName="password" type="password" name="password" placeholder="Password..."
-             class="form-password form-control" ngModel>
-      <span class="input-group-addon" id="basic-addon2"><a [routerLink]="['/reset_password']" target="_blank">Forgot?</a></span>
+      <input formControlName="password" type="password" name="password" placeholder="{{ 'auth.password' | translate }}..."
+             class="form-password form-control">
+      <span class="input-group-addon" id="basic-addon2"><a [routerLink]="['/reset_password']" target="_blank">{{ 'auth.forgot' | translate }}?</a></span>
     </div>
   </div>
   <button (click)="login()"
           [disabled]="!loginForm.valid"
           type="submit"
-          class="btn btn-primary form-button">Sign in!</button>
+          class="btn btn-primary form-button">{{ 'auth.sign_in' | translate }}!</button>
 </form>

@@ -22,11 +22,22 @@
 
   "order": {
     "add_to_cart_success": "{{quantity}} {{product}} has been added to cart.",
-    "remove_from_cart_success": "{{product}} has been removed from cart."
+    "remove_from_cart_success": "{{product}} has been removed from cart.",
+    "submit_success": "You has been order successfully, please check mail and wait for delivery!. Thank you!"
   },
 
   "action": {
+    "close": "Close",
     "cancel": "Cancel",
-    "submit": "Submit"
+    "submit": "Submit",
+    "check_out": "Check Out"
+  },
+
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "forgot": "Forgot",
+    "sign_in": "Sign in",
+    "login_into_shop": "Login into our shop"
   }
 }
