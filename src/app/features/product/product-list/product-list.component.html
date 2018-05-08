@@ -58,7 +58,7 @@
         </div>
         <ng-template ngFor let-item [ngForOf]="datatableConfigs.value">
           <div class="col-md-4 col-sm-6 col-xs-12 margin-bottom-20">
-            <div class="product-item">
+            <div class="product-item" [ngStyle]="{ 'min-height': '442px' }">
               <div class="pi-img-wrapper">
                 <img src="http://localhost:3001/{{ item?.avatar }}" class="img-responsive" alt="{{ item?.name }}">
                 <div>

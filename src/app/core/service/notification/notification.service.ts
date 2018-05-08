@@ -32,6 +32,7 @@ export class NotificationService {
   private error$: Subject<any>;
   private progressBar$: Subject<boolean>;
   private cart$: BehaviorSubject<any>;
+  private dynamicDialog$: BehaviorSubject<any>;
 
   constructor() {
     this.dialog$ = <Subject<any>>new Subject();
@@ -39,6 +40,7 @@ export class NotificationService {
     this.error$ = <Subject<any>>new Subject();
     this.progressBar$ = <Subject<boolean>>new Subject();
     this.cart$ = <BehaviorSubject<any>>new BehaviorSubject<any>(null);
+    this.dynamicDialog$ = <BehaviorSubject<any>>new BehaviorSubject<any>(null);
   }
 
   /**
@@ -92,6 +94,15 @@ export class NotificationService {
    cartObserver(): Observable<any> {
      return this.cart$.asObservable();
    }
+
+   dynamicDialog(dynamicDialogData: any) {
+    this.dynamicDialog$.next(dynamicDialogData);
+    return dynamicDialogData;
+  }
+
+  dynamicDialogObserver(): Observable<any> {
+    return this.dynamicDialog$.asObservable();
+  }
 
   /**
    * [progress description]

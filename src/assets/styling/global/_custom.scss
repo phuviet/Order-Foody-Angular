@@ -39,11 +39,19 @@
 }
 
 .m-l {
-  margin-left: 15px;
+  margin-left: 20px;
 }
 
 .m-l-xl {
   margin-left: 30px;
+}
+
+.m-t-sm {
+  margin-top: 10px;
+}
+
+.m-t {
+  margin-top: 20px;
 }
 
 .dropdown-sm {
@@ -105,4 +113,20 @@
   +.radio-inline {
     margin-left: 20px;
   }
+}
+
+.form-group {
+  label {
+    &.required {
+      &:after {
+        content: '*';
+        color: $red;
+        margin-left: 3px;
+      }
+    }
+  }
+}
+
+.btn {
+  border-radius: 4px !important;
 }

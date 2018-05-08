@@ -1,3 +1,16 @@
 .ui-dialog {
   background-color: $white;
+  .ui-dialog-titlebar {
+    padding: 15px 10px;
+    background: $dark-gray;
+  }
+  .ui-dialog-title {
+    a {
+      float: right;
+      color: #000000;
+    }
+  }
+  .ui-dialog-titlebar-close {
+    display: none;
+  }
 }

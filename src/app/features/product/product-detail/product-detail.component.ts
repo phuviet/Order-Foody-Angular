@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ApiService, NotificationService } from '../../../core/service/index';
+import { ApiService, NotificationService, AuthService } from '../../../core/service/index';
 import * as moment from 'moment';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
+import { DataGridModule } from 'primeng/primeng';
 
 @Component({
   selector: 'app-product-detail',
@@ -18,18 +19,21 @@ export class ProductDetailComponent implements OnInit {
   quantity: number;
   bestSellersProduct: any;
   pointerProduct: any;
+  userInfo: any;
 
   constructor(
     private api: ApiService,
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
-    private ns: NotificationService
+    private ns: NotificationService,
+    private auth: AuthService
   ) {
     this.quantity = 1;
     this.isProcessing = false;
     this.bestSellersProduct = [];
     this.product = {};
+    this.userInfo = this.auth.getUserInfo();
   }
 
   ngOnInit() {
@@ -39,6 +43,9 @@ export class ProductDetailComponent implements OnInit {
         this.initFormReview();
         this.initFormComment();
         this.fetchData();
+        if (this.userInfo.id) {
+          this.fetchProductPointer();
+        }
       }
     });
   }
@@ -91,11 +98,25 @@ export class ProductDetailComponent implements OnInit {
 
   }
 
+  fetchProductPointer() {
+    this.api.get(['products', 'pointer']).subscribe(
+      (data: any) => {
+        this.pointerProduct = [
+          ...(data.products_new.map((item: any) => { item.title = 'new'; return item })),
+          ...(data.products_seller.map((item: any) => { item.title = 'seller'; return item }))
+        ];
+      }, (error: any) => {
+        //
+      }, () => {
+        //
+      }
+    )
+  }
+
   fetchData() {
     this.api.multiple(
       { uri: ['products', this.productId], method: 'GET' },
-      { uri: ['products', 'sellers'], method: 'GET' },
-      { uri: ['products', 'pointer'], method: 'GET' }
+      { uri: ['products', 'sellers'], method: 'GET' }
     ).subscribe(
       (data: any) => {
         if (data[0]) {
@@ -105,12 +126,6 @@ export class ProductDetailComponent implements OnInit {
         }
         if (data[1]) {
           this.bestSellersProduct = data[1];
-        }
-        if (data[2]) {
-          this.pointerProduct = [
-            ...(data[2].products_new.map((item: any) => { item.title = 'new'; return item })),
-            ...(data[2].products_seller.map((item: any) => { item.title = 'seller'; return item }))
-          ];
         }
       }, (error: any) => {
         //
