@@ -89,15 +89,15 @@
     <div class="container">
       <div class="row margin-bottom-40">
         <div class="col-md-12">
-          <h2>Best Sellers</h2>
+          <h2>{{ 'general.best_seller' | translate }}</h2>
           <ng-template ngFor let-item [ngForOf]="bestSellersProduct">
             <div class="col-md-3">
               <div class="product-item">
                 <div class="pi-img-wrapper">
                   <img src="http://localhost:3001/{{ item?.avatar }}" class="img-responsive" alt="{{ item?.name }}">
                   <div>
-                    <a href="../../assets/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                    <a [routerLink]="['/product-detail', item?.id]" class="btn btn-default fancybox-fast-view">View</a>
+                    <a href="../../assets/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">{{ 'action.zoom' | translate }}</a>
+                    <a [routerLink]="['/product-detail', item?.id]" class="btn btn-default fancybox-fast-view">{{ 'action.view' | translate }}</a>
                   </div>
                 </div>
                 <h3><a [routerLink]="['/product-detail', item?.id]">{{ item?.name }}</a></h3>
@@ -111,7 +111,7 @@
                 <div class="pi-price">
                   {{ item?.price }}
                 </div>
-                <button (click)="addToCart(item)" class="btn btn-default add2cart">Add to cart</button>
+                <button (click)="addToCart(item)" class="btn btn-default add2cart">{{ 'action.add_to_cart' | translate }}</button>
                 <!-- <div class="sticker sticker-sale"></div> -->
               </div>
             </div>
@@ -124,15 +124,15 @@
           <app-sidebar></app-sidebar>
         </div>
         <div class="col-md-9 col-sm-8">
-          <h2>Newest Products</h2>
+          <h2>{{ 'general.newest_product' | translate }}</h2>
           <ng-template ngFor let-item [ngForOf]="topNewstProduct">
             <div class="col-md-4">
               <div class="product-item">
                 <div class="pi-img-wrapper">
                   <img src="http://localhost:3001/{{ item?.avatar }}" class="img-responsive" alt="{{ item?.name }}">
                   <div>
-                    <a href="../../assets/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">Zoom</a>
-                    <a [routerLink]="['/product-detail', item?.id]" class="btn btn-default fancybox-fast-view">View</a>
+                    <a href="../../assets/pages/img/products/model1.jpg" class="btn btn-default fancybox-button">{{ 'action.zoom' | translate }}</a>
+                    <a [routerLink]="['/product-detail', item?.id]" class="btn btn-default fancybox-fast-view">{{ 'action.view' | translate }}</a>
                   </div>
                 </div>
                 <h3><a [routerLink]="['/product-detail', item?.id]">{{ item?.name }}</a></h3>
@@ -146,7 +146,7 @@
                 <div class="pi-price">
                   {{ item?.price }}
                 </div>
-                <a (click)="addToCart(item)" class="btn btn-default add2cart">Add to cart</a>
+                <a (click)="addToCart(item)" class="btn btn-default add2cart">{{ 'action.add_to_cart' | translate }}</a>
                 <div class="sticker sticker-new"></div>
               </div>
             </div>

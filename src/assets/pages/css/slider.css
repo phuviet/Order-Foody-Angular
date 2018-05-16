@@ -115,24 +115,24 @@
 }
 
 .carousel-slider .carousel-item-four {
-    background: url(../../../assets/pages/img/shop-slider/slide1/bg.jpg);
+    background: url(../../../assets/pages/img/shop-slider/slide1/carous-1.jpg);
     background-size: cover;
     background-position: center center;
 }
 
 .carousel-slider .carousel-item-five {
-    background: url(../../../assets/pages/img/shop-slider/slide2/bg.jpg);
+    background: url(../../../assets/pages/img/shop-slider/slide2/carous-2.jpg);
     background-size: cover;
 }
 
 .carousel-slider .carousel-item-six {
-    background: url(../../../assets/pages/img/shop-slider/slide3/bg.jpg);
+    background: url(../../../assets/pages/img/shop-slider/slide3/carous-3.jpg);
     background-size: cover;
     background-position: center center;
 }
 
 .carousel-slider .carousel-item-seven {
-    background: url(../../../assets/pages/img/shop-slider/slide4/bg.jpg);
+    background: url(../../../assets/pages/img/shop-slider/slide4/carous-4.jpg);
     background-size: cover;
     background-position: center center;
 }

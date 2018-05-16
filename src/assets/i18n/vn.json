@@ -1,5 +1,133 @@
 {
+  "action": {
+    "add_to_cart": "Thêm vào giỏ",
+    "close": "Đóng",
+    "change": "Thay đổi",
+    "continue_shopping": "Tiếp tục mua sắm",
+    "check_out": "Thanh toán",
+    "cancel": "Huỷ bỏ",
+    "submit": "Submit",
+    "update": "Cập nhập",
+    "register": "Đăng ký",
+    "sign_in": "Đăng nhập",
+    "sign_out": "Đăng xuất",
+    "search": "Tìm kiếm",
+    "view": "Xem",
+    "view_cart": "Xem giỏ hàng",
+    "zoom": "Phóng to"
+  },
+
+  "account": {
+    "change_your_password": "Đổi mật khẩu của bạn",
+    "edit_account": "Thay đổi thông tin cá nhân",
+    "view_your_orders": "Xem lịch sử đặt hàng của bạn",
+    "profile_update_success": "Hồ sơ của bạn vừa được cập nhật."
+  },
+
   "product": {
-    "description": "Mô tả"
+    "comment": "Bình luận",
+    "comment_number": "Bình luận ({{number}})",
+    "description": "Miêu tả",
+    "hide_chile_comments": "Ẩn bình luận con.",
+    "image": "Hình ảnh",
+    "no_have_review": "Không có đánh giá nào cho sản phẩm này.",
+    "no_have_comment": "Không có bình luận nào cho sản phẩm này.",
+    "quantity": "Số lượng",
+    "unit_price": "Giá đơn vị",
+    "price": "Giá",
+    "total": "Tổng",
+    "write_review": "Viết đánh giá",
+    "write_comment": "Viết bình luận",
+    "review": "Đánh giá",
+    "reviews": "đánh giá",
+    "review_number": "Đánh giá ({{number}})",
+    "review_success": "Bạn đã đánh giá sản phẩm này!",
+    "rating": "Xếp hạng",
+    "star": "Sao",
+    "show_child_comment": "Hiện bình luận con."
+  },
+
+  "user": {
+    "auth": {
+      "register_success": "Bạn vừa đăng ký, vui lòng kiểm tra mail để xác nhận tài khoản!",
+      "confirm_register_success": "Bạn đã xác nhận tài khoản thành công, hãy đăng nhập để tận hưởng!"
+    },
+    "msg": {
+      "password_updated": "Mật khẩu của bạn vừa được cập nhập."
+    },
+    "gender":  {
+      "title": "Giới tính",
+      "male": "Nam",
+      "female": "Nữ",
+      "other": "Giới tính khác"
+    },
+    "password_requirements": "Mật khẩu phải tuân theo: <ul class='text-left no-padding m-l'><li>Ít nhất 8 kí tự</li><li>Bao gồm ký tự viết hoa</li><li>Bao gồm ký tự viết thường</li><li>Bao gồm chữ số  (từ 0 đến 9)</li><li>Không bao gồm ký tự đặc biệt (ví dụ: !, $, #, %)</li></ul>"
+  },
+
+  "order": {
+    "add_to_cart_success": "{{quantity}} {{product}} vừa được thêm vào giỏ hàng.",
+    "empty_cart": "Giỏ hàng của bạn rỗng!",
+    "order_empty": "Bạn không có lịch sử đặt hàng nào ở đây!",
+    "number_item": " {{number}} sản phẩm",
+    "remove_from_cart_success": "{{product}} vừa được xoá khỏi giỏ hàng.",
+    "receiver": "Người nhận",
+    "submit_success": "Bạn vừa đặt hàng thành công, vui lòng kiểm tra mail và đợi giao hàng. Cảm ơn!"
+  },
+
+  "auth": {
+    "avatar": "Ảnh đại diện",
+    "address": "Địa chỉ",
+    "birthday": "Ngày sinh",
+    "confirm": "Xác nhận",
+    "confirm_password": "Xác nhận mật khẩu",
+    "confirm_register": "Xác nhận đăng ký",
+    "current_password": "Mật khẩu hiện tại",
+    "email": "Email",
+    "forgot": "Quên",
+    "first_name": "Tên",
+    "middle_name": "Tên đệm",
+    "new_password": "Mật khẩu mới",
+    "password": "Mật khẩu",
+    "phone": "Điện thoại",
+    "please_login_to_checkout": "Làm ơn đăng nhập trước để thanh toán đơn hàng!",
+    "last_name": "Họ",
+    "login_into_shop": "Đăng nhập vào cửa hàng",
+    "restore_password": "Lấy lại mật khẩu",
+    "gender": "Giới tính"
+  },
+
+  "general": {
+    "about_us": "Về chúng tôi",
+    "best_seller": "Sản phẩm bán chạy",
+    "back_to_home": "Về trang chính",
+    "categories": "Thể loại",
+    "check_out": "Thanh toán",
+    "confirm_order": "Xác nhận đơn hàng",
+    "change_password": "Đổi mật khẩu",
+    "change_language_success": "Thay đổi ngôn ngữ thành công!",
+    "filter": "Bộ lọc",
+    "hello": "Xin chào",
+    "history": "Lịch sử",
+    "home": "Trang chủ",
+    "information": "Thông tin",
+    "my_account": "Tài khoản của tôi",
+    "my_account_page": "Trang tài khoản của tôi",
+    "my_profile": "Hồ sơ của tôi",
+    "my_orders": "Đơn hàng của tôi",
+    "no_food_search": "Không có sản phẩm nào phù hợp!",
+    "order_history": "Lịch sử đặt hàng",
+    "newest_product": "Sản phẩm mới nhất",
+    "pointer_product": "Sản phẩm gợi ý",
+    "register_now": "Đăng ký ngay",
+    "range": "Phạm vi",
+    "shopping_cart": "Giỏ hàng",
+    "some_text_help": "some help text here.",
+    "sort_by": "Sắp xếp",
+    "en": "Tiếng Anh",
+    "vn": "Tiếng Việt"
+  },
+
+  "shop_detail": {
+    "our_contact" : "Liên hệ của chúng tôi"
   }
 }

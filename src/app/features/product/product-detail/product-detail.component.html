@@ -4,7 +4,7 @@
       <div class="sidebar col-md-3 col-sm-5">
         <app-sidebar></app-sidebar>
         <div class="sidebar-products clearfix">
-          <h2>Bestsellers</h2>
+          <h2>{{ 'general.best_seller' | translate }}</h2>
           <ng-template ngFor let-item [ngForOf]="bestSellersProduct">
             <div class="item">
               <a [routerLink]="['/product-detail', item?.id]"><img src="http://localhost:3001/{{ item?.avatar }}" alt="{{ item?.name }}"></a>
@@ -25,7 +25,7 @@
           <div class="row">
             <div class="col-md-6 col-sm-6">
               <div class="product-main-image">
-                <img src="http://localhost:3001/{{ product?.avatar }}" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="assets/pages/img/products/model7.jpg">
+                <img src="http://localhost:3001/{{ product?.avatar }}" alt="{{ product?.name }}" class="img-responsive" data-BigImgsrc="assets/pages/img/products/model7.jpg">
               </div>
               <div class="product-other-images">
                 <ng-template ngFor let-image [ngForOf]="product?.products_images | slice: 0: 3">
@@ -40,7 +40,6 @@
               <div class="price-availability-block clearfix">
                 <div class="price">
                   <strong>{{ product?.price }}</strong>
-                  <!-- <em>$<span>62.00</span></em> -->
                 </div>
                 <!-- <div class="availability">
                   Availability: <strong>In Stock</strong>
@@ -71,7 +70,7 @@
                 <div class="product-quantity">
                   <input [(ngModel)]="quantity" id="product-quantity" min="1" type="number" value="1" class="form-control input-sm">
                 </div>
-                <button (click)="addToCart(product, quantity)" class="btn btn-primary" type="submit">Add to cart</button>
+                <button (click)="addToCart(product, quantity)" class="btn btn-primary" type="submit">{{ 'action.add_to_cart' | translate }}</button>
               </div>
               <div class="review">
                 <p-rating [stars]="5"
@@ -80,7 +79,7 @@
                           [readonly]="true"></p-rating>
                 <div class="rateit display-inline-block">
                 </div>
-                <a href="javascript:;">{{ product?.votes?.length }} reviews</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;">Write a review</a>
+                <a href="javascript:;">{{ product?.votes?.length }} {{ 'product.reviews' | translate }}</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="javascript:;">{{ 'product.write_review' | translate }}</a>
               </div>
               <ul class="social-icons">
                 <li><a class="facebook" data-original-title="facebook" href="javascript:;"></a></li>
@@ -94,8 +93,8 @@
             <div class="product-page-content">
               <ul id="myTab" class="nav nav-tabs">
                 <li class="active"><a href="#Description" data-toggle="tab">{{ 'product.description' | translate }}</a></li>
-                <li><a href="#Reviews" data-toggle="tab">Reviews ({{ product?.votes?.length }})</a></li>
-                <li><a href="#Comments" data-toggle="tab">Comments ({{ product?.parent_comments?.length }})</a></li>
+                <li><a href="#Reviews" data-toggle="tab">{{ 'product.review_number' | translate: { number: product?.votes?.length } }}</a></li>
+                <li><a href="#Comments" data-toggle="tab">{{ 'product.comment_number' | translate: { number: product?.parent_comments?.length } }}</a></li>
               </ul>
               <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade in active" id="Description">
@@ -104,20 +103,20 @@
                 <div class="tab-pane fade" id="Comments">
                   <!-- BEGIN FORM-->
                   <form [formGroup]="formComment" class="reviews-form margin-bottom-40" role="form">
-                    <h2>Write a comment</h2>
+                    <h2>{{ 'product.write_comment' | translate }}</h2>
                     <div class="form-group">
-                      <label for="comment">Comment <span class="require">*</span></label>
+                      <label for="comment">{{ 'product.comment' | translate }} <span class="require">*</span></label>
                       <textarea formControlName="context" class="form-control" rows="5" id="comment"></textarea>
                     </div>
                     <div class="padding-top-20">
                       <button (click)="submitComment()"
                               [disabled]="!formComment.valid"
                               type="submit"
-                              class="btn btn-primary">Comment</button>
+                              class="btn btn-primary">{{ 'product.comment' | translate }}</button>
                     </div>
                   </form>
                   <!-- END FORM-->
-                  <p *ngIf="!product?.parent_comments?.length; else otherComment">There are no comments for this product.</p>
+                  <p *ngIf="!product?.parent_comments?.length; else otherComment">{{ 'product.no_have_comment' | translate }}</p>
                   <ng-template #otherComment>
                     <div *ngFor="let parentItem of product?.parent_comments; let lastParent = last" class="review-item clearfix">
                       <div class="parent-comment">
@@ -135,7 +134,7 @@
                             <em>{{ parentItem?.from_now }}</em>
                           </div>
                           <p *ngIf="parentItem?.child_comments?.length && !parentItem.isShowChildComment" class="margin-bottom-10">
-                            <a (click)="toggleShowComment(parentItem)">Show child comments.</a>
+                            <a (click)="toggleShowComment(parentItem)">{{ 'product.show_child_comment' | translate }}</a>
                           </p>
                         </div>
                         <div class="m-l-xl children-comment">
@@ -158,17 +157,12 @@
                               <hr *ngIf="!lastChild">
                             </div>
                           </ng-template>
-                          <!-- <div class="input-comment">
-                            <input type="text" class="full-screen">
-                          </div> -->
                         </div>
-
                         <!-- <div>
                           <input class="m-l-sm" type="text" [ngStyle]="{ 'width': '99%', 'height': '30px' }">
                         </div> -->
-
                         <p class="m-l-sm" *ngIf="parentItem?.child_comments?.length && parentItem.isShowChildComment">
-                          <a (click)="toggleShowComment(parentItem)">Hide child comments.</a>
+                          <a (click)="toggleShowComment(parentItem)">{{ 'product.hide_chile_comments' | translate }}</a>
                         </p>
                       </div>
                     </div>
@@ -177,33 +171,25 @@
                 <div class="tab-pane fade" id="Reviews">
                   <!-- BEGIN FORM-->
                   <form [formGroup]="formReview" class="reviews-form margin-bottom-40" role="form">
-                    <h2>Write a review</h2>
-                    <!-- <div class="form-group">
-                      <label for="name">Name <span class="require">*</span></label>
-                      <input type="text" class="form-control" id="name">
-                    </div>
+                    <h2>{{ 'product.write_review' | translate }}</h2>
                     <div class="form-group">
-                      <label for="email">Email</label>
-                      <input type="text" class="form-control" id="email">
-                    </div> -->
-                    <div class="form-group">
-                      <label for="review">Review <span class="require">*</span></label>
+                      <label for="review">{{ 'product.review' | translate }} <span class="require">*</span></label>
                       <textarea formControlName="description" class="form-control" rows="5" id="review"></textarea>
                     </div>
                     <div class="form-group">
-                      <label for="email">Rating</label>
+                      <label for="email">{{ 'product.rating' | translate }}</label>
                       <p-rating formControlName="star" [stars]="5"></p-rating>
                     </div>
                     <div class="padding-top-20">
                       <button (click)="submitReview()"
-                              [disabled]="!formReview.valid"
+                              [disabled]="!formReview.valid || !isCanReview"
                               type="submit"
-                              class="btn btn-primary">Review</button>
+                              class="btn btn-primary">{{ 'product.review' | translate }}</button>
                     </div>
                   </form>
                   <!-- END FORM-->
                   <hr>
-                  <p *ngIf="!product?.votes?.length; else otherReview">There are no reviews for this product.</p>
+                  <p *ngIf="!product?.votes?.length; else otherReview">{{ 'product.no_have_review' | translate }}</p>
                   <ng-template #otherReview>
                     <div *ngFor="let item of product?.votes; let lastReview = last" class="review-item clearfix">
                       <div class="review-item-submitted clearfix">
@@ -233,15 +219,15 @@
     </div>
     <div class="row margin-bottom-40">
       <div class="col-md-12 col-sm-12">
-        <h2>Product Pointer</h2>
+        <h2>{{ 'general.pointer_product' | translate }}</h2>
         <ng-template ngFor let-item [ngForOf]="pointerProduct">
           <div class="col-md-3">
             <div class="product-item">
               <div class="pi-img-wrapper">
                 <img src="http://localhost:3001/{{ item?.avatar }}" class="img-responsive" alt="{{ item?.name }}">
                 <div>
-                  <a href="http://localhost:3001/{{ item?.avatar }}" class="btn btn-default fancybox-button">Zoom</a>
-                  <a [routerLink]="['/product-detail', item?.id]" class="btn btn-default fancybox-fast-view">View</a>
+                  <a href="http://localhost:3001/{{ item?.avatar }}" class="btn btn-default fancybox-button">{{ 'action.zoom' | translate }}</a>
+                  <a [routerLink]="['/product-detail', item?.id]" class="btn btn-default fancybox-fast-view">{{ 'action.view' | translate }}</a>
                 </div>
               </div>
               <h3><a [routerLink]="['/product-detail', item?.id]">{{ item?.name }}</a></h3>
@@ -252,7 +238,7 @@
                           [readonly]="true"></p-rating>
               </div>
               <div class="pi-price">{{ item?.price }}</div>
-              <a (click)="addToCart(item, 1)" class="btn btn-default add2cart">Add to cart</a>
+              <a (click)="addToCart(item, 1)" class="btn btn-default add2cart">{{ 'action.add_to_cart' | translate }}</a>
               <div class="sticker sticker-{{ item?.title }}"></div>
             </div>
           </div>

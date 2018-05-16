@@ -5,6 +5,7 @@ import { CheckoutOrderComponent } from './checkout-order/checkout-order.componen
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { phoneNumberValidator } from '../../shared/function/form-validator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -15,13 +16,17 @@ export class CartComponent implements OnInit {
   form: FormGroup;
   currentCart: any;
   totalPriceCart: number;
+  userInfo: any;
 
   constructor(
     private cart: CartService,
     private ns: NotificationService,
     private fb: FormBuilder,
-    private api: ApiService
+    private api: ApiService,
+    private auth: AuthService,
+    private router: Router
   ) {
+    this.userInfo = this.auth.getUserInfo();
   }
 
   ngOnInit() {
@@ -81,31 +86,40 @@ export class CartComponent implements OnInit {
   }
 
   checkoutCart() {
-    this.initForm();
-    let dialog = {
-      type: 'confirm',
-      contentObj: {
-        form: this.form,
-        cart: this.currentCart
-      },
-      btnAccept: {
-        txt: 'action.check_out',
-        cls: 'btn-primary'
-      },
-      btnReject: {
-        txt: 'action.close',
-        cls: 'btn-default'
+    if (!this.userInfo.id) {
+      this.ns.message({
+        type: 'danger',
+        msg: 'auth.please_login_to_checkout'
+      });
+      this.router.navigate(['/auth', 'login']);
+    } else {
+      this.initForm();
+      let dialog = {
+        type: 'confirm',
+        contentObj: {
+          form: this.form,
+          cart: this.currentCart
+        },
+        btnAccept: {
+          txt: 'action.check_out',
+          cls: 'btn-primary'
+        },
+        btnReject: {
+          txt: 'action.close',
+          cls: 'btn-default'
+        }
       }
+      this.ns.dialog(new DialogItem(CheckoutOrderComponent, dialog), true).subscribe(
+        (accept: boolean) => {
+          if (accept) {
+            let dialog = this.ns.dynamicDialogObserver().subscribe((dataRequest: any) => {
+              this.submitOrder(dataRequest);
+            });
+            dialog.unsubscribe()
+          }
+        }
+      )
     }
-    this.ns.dialog(new DialogItem(CheckoutOrderComponent, dialog), true).subscribe(
-      (accept: boolean) => {
-        let dialog = this.ns.dynamicDialogObserver().subscribe((dataRequest: any) => {
-          console.log(dataRequest);
-          this.submitOrder(dataRequest);
-        });
-        dialog.unsubscribe()
-      }
-    )
   }
 
   submitOrder(dataRequest: any) {

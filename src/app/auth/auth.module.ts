@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { SharedModule } from '../shared/module/shared.module';
 import { AuthComponent } from './auth.component';
 import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
@@ -45,6 +46,7 @@ const routes: Routes = [
   ],
   imports: [
     ErrorModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ]
 })

@@ -6,19 +6,19 @@
         <!-- BEGIN TOP BAR LEFT PART -->
         <div class="col-md-6 col-sm-6 additional-shop-info">
           <ul class="list-unstyled list-inline">
-            <li><i class="fa fa-phone"></i><span>+1 456 6717</span></li>
+            <li><i class="fa fa-phone"></i><span>+84 935 815 255</span></li>
             <!-- BEGIN LANGS -->
             <li class="langs-block">
-              <a href="javascript:void(0);" class="current">English </a>
+              <a href="javascript:void(0);" class="current">{{ 'general.' + language | translate }} </a>
               <div class="langs-block-others-wrapper">
                 <div class="langs-block-others">
-                  <a href="javascript:void(0);">
-                    <img class="display-inline-block m-r-xs" src="assets/img/flags/vi.png" alt="Vietnamese">
-                    Vietnamese
+                  <a (click)="changeLanguage('vn')">
+                    <img class="display-inline-block m-r-xs" src="assets/img/flags/vi.png" alt="{{ 'general.vn' | translate }}">
+                    {{ 'general.vn' | translate }}
                   </a>
-                  <a href="javascript:void(0);">
-                    <img class="display-inline-block m-r-xs" src="assets/img/flags/en.png" alt="English">
-                    English
+                  <a (click)="changeLanguage('en')">
+                    <img class="display-inline-block m-r-xs" src="assets/img/flags/en.png" alt="{{ 'general.en' | translate }}">
+                    {{ 'general.en' | translate }}
                   </a>
                 </div>
               </div>
@@ -31,15 +31,15 @@
         <div class="col-md-6 col-sm-6 additional-nav">
           <ul class="list-unstyled list-inline pull-right">
             <li *ngIf="userInfo && userInfo?.id">
-              Hello&nbsp;<a [routerLink]="['/my-account']">{{ userInfo?.full_name }}!</a>
+              {{ 'general.hello' | translate }}&nbsp;<a [routerLink]="['/my-account']">{{ userInfo?.full_name }}!</a>
             </li>
-            <li *ngIf="userInfo && userInfo?.id"><a [routerLink]="['/my-account']">My Account</a></li>
+            <li *ngIf="userInfo && userInfo?.id"><a [routerLink]="['/my-account']">{{ 'general.my_account' | translate }}</a></li>
             <!-- <li><a href="shop-checkout.html">Checkout</a></li> -->
             <li *ngIf="userInfo && userInfo?.id; else logIn">
-              <a (click)="logout()">Log Out</a>
+              <a (click)="logout()">{{ 'action.sign_out' | translate }}</a>
             </li>
             <ng-template #logIn>
-              <li><a [routerLink]="['/auth', 'login']">Log In</a></li>
+              <li><a [routerLink]="['/auth', 'login']">{{ 'action.sign_in' | translate }}</a></li>
             </ng-template>
           </ul>
         </div>
@@ -53,13 +53,14 @@
   <div class="header">
     <div class="container">
       <a class="site-logo" [routerLink]="['/homepage']">
-        <img src="assets/corporate/img/logos/logo-shop-red.png" alt="Metronic Shop UI">
+        <img [ngStyle]="{ 'width': '160px' }" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvbfV6FiKbQdflXpCurUao9lVXzf6XPQBn2fledkktgZLIv3pr5w" alt="Metronic Shop UI">
+        <!-- <p>Order Foody</p> -->
       </a>
       <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
       <!-- BEGIN CART -->
       <div class="top-cart-block">
         <div class="top-cart-info">
-          <a [routerLink]="['/cart']" class="top-cart-info-count">{{ totalItem }} item(s)</a>
+          <a [routerLink]="['/cart']" class="top-cart-info-count">{{ 'order.number_item' | translate: { number: totalItem } }}</a>
           <a [routerLink]="['/cart']" class="top-cart-info-value">{{ totalPriceCart }}</a>
         </div>
         <a [routerLink]="['/cart']"><i class="fa fa-shopping-cart"></i></a>
@@ -79,7 +80,7 @@
               </ng-template>
             </ul>
             <div class="text-right">
-              <a [routerLink]="['/cart']" class="btn btn-default">View Cart</a>
+              <a [routerLink]="['/cart']" class="btn btn-default">{{ 'action.view_cart' | translate }}</a>
               <!-- <a href="shop-checkout.html" class="btn btn-primary">Checkout</a> -->
             </div>
           </div>
@@ -191,16 +192,16 @@
           </li> -->
 
           <li>
-            <a [routerLink]="['/homepage']">Home</a>
+            <a [routerLink]="['/homepage']">{{ 'general.home' | translate }}</a>
           </li>
 
           <li>
-            <a [routerLink]="['/about-us']">About Us</a>
+            <a [routerLink]="['/about-us']">{{ 'general.about_us' | translate }}</a>
           </li>
 
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" data-target="" href="javascript:;">
-              Categories
+              {{ 'general.categories' | translate }}
             </a>
             <ul class="dropdown-menu">
               <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" *ngFor="let item of categories">
@@ -259,7 +260,7 @@
 
           <li class="dropdown dropdown100 nav-catalogue">
             <a class="dropdown-toggle" data-toggle="dropdown" data-target="" href="javascript:;">
-              History
+              {{ 'general.history' | translate }}
             </a>
             <ul class="dropdown-menu">
               <li>
@@ -287,7 +288,7 @@
                 <i class="fa fa-search search-btn"></i>
               </div>
               <div class="search pull-right dropdown-sm">
-                <input [(ngModel)]="params.name_cont" (input)="search()" type="text" placeholder="Search" class="form-control">
+                <input [(ngModel)]="params.name_cont" (input)="search()" type="text" placeholder="{{ 'action.search' | translate }}" class="form-control">
                 <div *ngIf="searchProduct?.length" class="search-result">
                   <table class="table-search-result full-screen">
                     <tbody>
@@ -305,7 +306,7 @@
                   </table>
                 </div>
                 <div *ngIf="!searchProduct?.length && params.name_cont && isTimeout" class="search-result">
-                  <span>There is no suitable food!</span>
+                  <span>{{ 'general.no_food_search' | translate }}</span>
                 </div>
               </div>
             </div>

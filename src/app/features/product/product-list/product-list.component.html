@@ -4,15 +4,15 @@
       <div class="sidebar col-md-3 col-sm-5">
         <app-sidebar></app-sidebar>
         <div class="sidebar-filter margin-bottom-25">
-          <h2>FILTER</h2>
-          <h3>Price</h3>
+          <h2>{{ 'general.filter' | translate }}</h2>
+          <h3>{{ 'product.price' | translate }}</h3>
           <p>
-            <label for="amount">Range: $50 - $100</label>
+            <label for="amount">{{ 'general.range' | translate }}: $50 - $100</label>
             <p-slider [min]="50" [max]="100"></p-slider>
           </p>
         </div>
         <div class="sidebar-products clearfix">
-          <h2>Bestsellers</h2>
+          <h2>{{ 'general.best_seller' | translate }}</h2>
           <ng-template ngFor let-item [ngForOf]="bestSellersProduct">
             <div class="item">
               <a [routerLink]="['/product-detail', item?.id]"><img src="http://localhost:3001/{{ item?.avatar }}" alt="{{ item?.name }}"></a>
@@ -37,7 +37,7 @@
             </div>
             <div class="col-md-10 col-sm-10">
               <div class="pull-right">
-                <label class="control-label">Sort&nbsp;By:</label>
+                <label class="control-label">{{ 'general.sort_by' | translate }}:</label>
                 <!-- <p-dropdown [options]="sortOptionList"
                             styleClass="dropdown-sm">
                 </p-dropdown> -->
@@ -62,8 +62,8 @@
               <div class="pi-img-wrapper">
                 <img src="http://localhost:3001/{{ item?.avatar }}" class="img-responsive" alt="{{ item?.name }}">
                 <div>
-                  <a target="_blank" href="http://localhost:3001/{{ item?.avatar }}" class="btn btn-default fancybox-button">Zoom</a>
-                  <a [routerLink]="['/product-detail', item?.id]" class="btn btn-default fancybox-fast-view">View</a>
+                  <a target="_blank" href="http://localhost:3001/{{ item?.avatar }}" class="btn btn-default fancybox-button">{{ 'action.zoom' | translate }}</a>
+                  <a [routerLink]="['/product-detail', item?.id]" class="btn btn-default fancybox-fast-view">{{ 'action.view' | translate }}</a>
                 </div>
               </div>
               <h3><a [routerLink]="['/product-detail', item?.id]">{{ item?.name }}</a></h3>
@@ -74,7 +74,7 @@
                           [readonly]="true"></p-rating>
               </div>
               <div class="pi-price">{{ item?.price }}</div>
-              <a (click)="addToCart(item)" class="btn btn-default add2cart">Add to cart</a>
+              <a (click)="addToCart(item)" class="btn btn-default add2cart">{{ 'action.add_to_cart' | translate }}</a>
             </div>
           </div>
         </ng-template>

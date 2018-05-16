@@ -3,10 +3,10 @@
     <div class="row margin-bottom-40">
       <div class="sidebar col-md-3 col-sm-3">
         <ul class="list-group margin-bottom-25 sidebar-menu">
-          <li class="list-group-item clearfix"><a [routerLink]="['/auth', 'register']"><i class="fa fa-angle-right"></i> Register</a></li>
-          <li class="list-group-item clearfix"><a href="javascript:;"><i class="fa fa-angle-right"></i> Restore Password</a></li>
+          <li class="list-group-item clearfix"><a [routerLink]="['/auth', 'register']"><i class="fa fa-angle-right"></i> {{ 'action.register' | translate }}</a></li>
+          <li class="list-group-item clearfix"><a href="javascript:;"><i class="fa fa-angle-right"></i> {{ 'auth.restore_password' | translate }}</a></li>
           <li class="list-group-item clearfix">
-            <a [routerLink]="['/my-account']"><i class="fa fa-angle-right"></i> My account</a>
+            <a [routerLink]="['/my-account']"><i class="fa fa-angle-right"></i> {{ 'general.my_account' | translate }}</a>
           </li>
           <!-- <li class="list-group-item clearfix"><a href="javascript:;"><i class="fa fa-angle-right"></i> Address book</a></li> -->
           <!-- <li class="list-group-item clearfix"><a href="javascript:;"><i class="fa fa-angle-right"></i> Wish list</a></li> -->

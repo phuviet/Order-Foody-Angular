@@ -3,10 +3,10 @@
     <div class="row margin-bottom-40">
       <div class="sidebar col-md-3 col-sm-3">
         <ul *ngIf="userInfo.id" class="list-group margin-bottom-25 sidebar-menu">
-          <li class="list-group-item clearfix"><a [routerLink]="['/auth', 'register']"><i class="fa fa-angle-right"></i> Register</a></li>
-          <li class="list-group-item clearfix"><a href="javascript:;"><i class="fa fa-angle-right"></i> Restore Password</a></li>
+          <li class="list-group-item clearfix"><a [routerLink]="['/auth', 'register']"><i class="fa fa-angle-right"></i> {{ 'action.register' | translate }}</a></li>
+          <li class="list-group-item clearfix"><a href="javascript:;"><i class="fa fa-angle-right"></i> {{ 'auth.restore_password' | translate }}</a></li>
           <li class="list-group-item clearfix">
-            <a [routerLink]="['/my-account']"><i class="fa fa-angle-right"></i> My account</a>
+            <a [routerLink]="['/my-account']"><i class="fa fa-angle-right"></i> {{ 'general.my_account' | translate }}</a>
           </li>
           <!-- <li class="list-group-item clearfix"><a href="javascript:;"><i class="fa fa-angle-right"></i> Address book</a></li> -->
           <!-- <li class="list-group-item clearfix"><a href="javascript:;"><i class="fa fa-angle-right"></i> Wish list</a></li> -->
@@ -14,13 +14,13 @@
           <!-- <li class="list-group-item clearfix"><a href="javascript:;"><i class="fa fa-angle-right"></i> Newsletter</a></li> -->
         </ul>
 
-        <h2>Our Contacts</h2>
+        <h2>{{ 'shop_detail.our_contact' | translate }} </h2>
         <address>
           {{ shopDetail?.address }}<br>
-          <span title="Phone">Phone: &nbsp;</span> {{ shopDetail?.phone_number }}<br>
+          <span title="Phone">{{ 'auth.phone' | translate }}: &nbsp;</span> {{ shopDetail?.phone_number }}<br>
         </address>
         <address>
-          <strong>Email</strong><br>
+          <strong>{{ 'auth.email' | translate }}</strong><br>
           <a href="mailto:info@metronic.com">{{ shopDetail?.email }}</a><br>
           <!-- <a href="mailto:support@metronic.com">support@metronic.com</a> -->
         </address>
@@ -33,7 +33,7 @@
         </ul>
       </div>
       <div class="col-md-9 col-sm-7">
-        <h1>About Us</h1>
+        <h1>{{ 'general.about_us' | translate }}</h1>
         <div class="content-page">
           <div class="gmaps margin-bottom-40" style="height:400px;">
             <p-gmap [options]="options"
