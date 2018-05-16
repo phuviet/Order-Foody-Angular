@@ -60,6 +60,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: any) => {
+      this.params.page = 1;
       if (params && params.id) {
         this.categoryId = +params['id'];
       }

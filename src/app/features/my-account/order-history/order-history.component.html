@@ -1,22 +1,22 @@
-<h1>Order History</h1>
-<span *ngIf="!orderHistory?.length">You have no order history here!</span>
+<h1>{{ 'general.order_history' | translate }}</h1>
+<span *ngIf="!orderHistory?.length">{{ 'order.order_empty' | translate }}</span>
 <p-accordion [multiple]="true">
   <p-accordionTab *ngFor="let order of orderHistory" header="{{ order?.created_at | date: 'medium' }}">
     <div class="row margin-bottom-20">
       <div class="col-md-6">
         <div class="col-md-12">
-          <p class="col-md-3">Receiver:</p>
-          <p class="col-md-9 item-name">{{ order?.receiver }}</p>
+          <p class="col-md-4">{{ 'order.receiver' | translate }}:</p>
+          <p class="col-md-8 item-name">{{ order?.receiver }}</p>
         </div>
         <div class="col-md-12">
-          <p class="col-md-3">Phone:</p>
-          <p class="col-md-9">{{ order?.phone }}</p>
+          <p class="col-md-4">{{ 'auth.phone' | translate }}:</p>
+          <p class="col-md-8">{{ order?.phone }}</p>
         </div>
       </div>
       <div class="col-md-6">
         <div class="col-md-12">
-          <p class="col-md-3">Address:</p>
-          <p class="col-md-9">{{ order?.address }}</p>
+          <p class="col-md-4">{{ 'auth.address' | translate }}:</p>
+          <p class="col-md-8">{{ order?.address }}</p>
         </div>
       </div>
     </div>
@@ -26,11 +26,11 @@
           <div class="table-wrapper-responsive">
             <table class="full-screen" summary="Shopping cart">
               <tr>
-                <th class="text-center">Image</th>
-                <th class="text-center">Description</th>
-                <th class="text-center">Quantity</th>
-                <th class="text-center">Unit price</th>
-                <th class="text-center" colspan="2">Total</th>
+                <th class="text-center">{{ 'product.image' | translate }}</th>
+                <th class="text-center">{{ 'product.description' | translate }}</th>
+                <th class="text-center">{{ 'product.quantity' | translate }}</th>
+                <th class="text-center">{{ 'product.unit_price' | translate }}</th>
+                <th class="text-center" colspan="2">{{ 'product.total' | translate }}</th>
               </tr>
               <tr *ngFor="let orderItem of order?.order_items">
                 <td class="goods-page-image">
@@ -53,7 +53,7 @@
           </div>
           <div class="row">
             <div class="col-md-6 pull-right text-right" [ngStyle]="{ 'padding-right': '50px' }">
-              <em>Total:</em>&nbsp;&nbsp;
+              <em>{{ 'product.total' | translate }}:</em>&nbsp;&nbsp;
               <strong class="price">{{ order?.totalPrice }}</strong>
             </div>
           </div>

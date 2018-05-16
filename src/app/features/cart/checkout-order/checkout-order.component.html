@@ -1,27 +1,27 @@
 <p-dialog [blockScroll]="true" [closeOnEscape]="false" [draggable]="false" [visible]="isVisible" [width]="dialog?.contentObj?.style?.width || 620" modal="true">
   <p-header>
-    CHECKOUT
+    {{ 'general.check_out' | translate }}
     <a (click)="close()" class="fa fa-fw fa-close"></a>
   </p-header>
   <div class="col-md-12 m-t">
     <p-tabView class="my-tabview is-widget" (onChange)="onTabchange($event)">
-      <p-tabPanel header="Information" [selected]="tabCurrent === 0">
+      <p-tabPanel header="{{ 'general.information' | translate }}" [selected]="tabCurrent === 0">
         <form [formGroup]="form" class="form-horizontal">
           <div class="row">
             <div class="form-group">
-              <label class="col-md-offset-1 col-md-2 control-label required" for="note">Receiver</label>
+              <label class="col-md-offset-1 col-md-2 control-label required" for="note">{{ 'order.receiver' | translate }}</label>
               <div class="col-md-8">
                 <input class="form-control" formControlName="receiver">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-md-offset-1 col-md-2 control-label required" for="note">Address</label>
+              <label class="col-md-offset-1 col-md-2 control-label required" for="note">{{ 'auth.address' | translate }}</label>
               <div class="col-md-8">
                 <input class="form-control" formControlName="address">
               </div>
             </div>
             <div class="form-group">
-              <label class="col-md-offset-1 col-md-2 control-label required" for="note">Phone</label>
+              <label class="col-md-offset-1 col-md-2 control-label required" for="note">{{ 'auth.phone' | translate }}</label>
               <div class="col-md-8">
                 <input class="form-control" formControlName="phone">
               </div>
@@ -29,18 +29,18 @@
           </div>
         </form>
       </p-tabPanel>
-      <p-tabPanel header="Confirm Order" [selected]="tabCurrent === 1" [disabled]="!form.valid">
+      <p-tabPanel header="{{ 'general.confirm_order' | translate }}" [selected]="tabCurrent === 1" [disabled]="!form.valid">
         <div class="row margin-bottom-50">
           <table class="table-wrapper-responsive full-screen">
             <tr>
-              <th>Image</th>
-              <th class="text-center">Quantity</th>
-              <th class="text-center">Unit price</th>
-              <th class="text-center">Total</th>
+              <th>{{ 'product.image' | translate }}</th>
+              <th class="text-center">{{ 'product.quantity' | translate }}</th>
+              <th class="text-center">{{ 'product.unit_price' | translate }}</th>
+              <th class="text-center">{{ 'product.total' | translate }}</th>
             </tr>
             <tr *ngFor="let itemCart of currentCart">
               <td>
-                <img width="37" height="34" src="http://localhost:3001/{{ itemCart?.avatar }}" class="img-responsive" alt="{{ itemCart?.name }}">
+                <img width="70" height="70" src="http://localhost:3001/{{ itemCart?.avatar }}" alt="{{ itemCart?.name }}">
               </td>
               <td class="text-center">{{ itemCart?.quantity }}</td>
               <td class="text-center">{{ itemCart?.price }}</td>
@@ -48,7 +48,7 @@
             </tr>
             <tr>
               <td colspan="4" class="text-right" [ngStyle]="{ 'padding-right': '45px' }">
-                Total: <strong>{{ totalPriceCart }} = ${{ totalPriceCartUSD }}</strong>
+                {{ 'product.total' | translate }}: <strong>{{ totalPriceCart }} = ${{ totalPriceCartUSD }}</strong>
               </td>
             </tr>
           </table>

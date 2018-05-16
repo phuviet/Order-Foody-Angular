@@ -12,6 +12,7 @@ import { DataGridModule } from 'primeng/primeng';
 export class ProductDetailComponent implements OnInit {
 
   isProcessing: boolean;
+  isCanReview: boolean;
   formReview: FormGroup;
   formComment: FormGroup;
   productId: number;
@@ -29,6 +30,7 @@ export class ProductDetailComponent implements OnInit {
     private ns: NotificationService,
     private auth: AuthService
   ) {
+    this.isCanReview = true;
     this.quantity = 1;
     this.isProcessing = false;
     this.bestSellersProduct = [];
@@ -82,14 +84,20 @@ export class ProductDetailComponent implements OnInit {
   }
 
   submitReview() {
+    this.isProcessing = this.ns.progress(true);
     this.api.post(['votes'], this.formReview.value).subscribe(
       (data: any) => {
         this.product.votes = data;
         this.parseDateReview(this.product.votes);
+        this.formReview.reset();
+        this.ns.message({
+          type: 'success',
+          msg: 'product.review_success'
+        })
       }, (error: any) => {
-        //
+        this.isProcessing = this.ns.progress(false);
       }, () => {
-        //
+        this.isProcessing = this.ns.progress(false);
       }
     )
   }
@@ -121,6 +129,10 @@ export class ProductDetailComponent implements OnInit {
       (data: any) => {
         if (data[0]) {
           this.product = data[0];
+          let reviewUser = this.product.votes.find((item: any) => item.user.id === this.userInfo.id);
+          if (reviewUser) {
+            this.isCanReview = false;
+          }
           this.parseDateReview(this.product.votes);
           this.parseDateComment(this.product.parent_comments);
         }

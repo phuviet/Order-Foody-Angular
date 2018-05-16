@@ -15,6 +15,7 @@ export class MyProfileComponent implements OnInit {
   userProfile: any;
   year: any;
   metadata: any;
+  avatar: any;
 
   constructor(
     private api: ApiService,
@@ -48,7 +49,8 @@ export class MyProfileComponent implements OnInit {
       phone: ['', Validators.required],
       address: ['', Validators.required],
       birthday: ['', Validators.required],
-      gender: ['', Validators.required]
+      gender: ['', Validators.required],
+      avatar: ['']
     });
   }
 
@@ -64,6 +66,10 @@ export class MyProfileComponent implements OnInit {
     }
   }
 
+  selectAvatar(e: any) {
+    this.avatar = e.target.files[0];
+  }
+
   fetchData() {
     this.api.get(['profile']).subscribe(
       (data: any) => {
@@ -76,14 +82,20 @@ export class MyProfileComponent implements OnInit {
     )
   }
 
+  parseData() {
+    let data = this.form.value;
+    data.avatar = this.avatar;
+    return data;
+  }
+
   onSubmit() {
     this.isProcessing = this.ns.progress(true);
-    this.api.put(['profile', this.userProfile.id], this.form.value).subscribe(
+    this.api.put(['profile', this.userProfile.id], this.parseData()).subscribe(
       (data: any) => {
         this.userProfile = data.user;
         this.ns.message({
           type: 'success',
-          msg: 'Your profile has been updated.'
+          msg: 'account.profile_update_success'
         });
       }, (error: any) => {
         this.isProcessing = this.ns.progress(false);

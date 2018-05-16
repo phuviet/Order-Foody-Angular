@@ -1,44 +1,44 @@
-<h1>My Profile</h1>
+<h1>{{ 'general.my_profile' | translate }}</h1>
 <div class="content-form-page">
   <form [formGroup]="form" role="form" class="form-horizontal form-without-legend">
     <div class="form-group">
-      <label class="col-lg-2 control-label" for="first-name">First Name <span class="require">*</span></label>
+      <label class="col-lg-2 control-label" for="first-name">{{ 'auth.first_name' | translate }} <span class="require">*</span></label>
       <div class="col-lg-8">
         <input formControlName="first_name" type="text" id="first-name" class="form-control">
       </div>
     </div>
     <div class="form-group">
-    <label class="col-lg-2 control-label" for="first-name">Middle Name</label>
+    <label class="col-lg-2 control-label" for="first-name">{{ 'auth.middle_name' | translate }}</label>
       <div class="col-lg-8">
         <input formControlName="middle_name" type="text" id="first-name" class="form-control">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-lg-2 control-label" for="last-name">Last Name <span class="require">*</span></label>
+      <label class="col-lg-2 control-label" for="last-name">{{ 'auth.last_name' | translate }} <span class="require">*</span></label>
       <div class="col-lg-8">
         <input formControlName="last_name" type="text" id="first-name" class="form-control">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-lg-2 control-label" for="email">E-Mail <span class="require">*</span></label>
+      <label class="col-lg-2 control-label" for="email">{{ 'auth.email' | translate }} <span class="require">*</span></label>
       <div class="col-lg-8">
         <input formControlName="email" type="text" id="email" class="form-control" disabled>
       </div>
     </div>
     <div class="form-group">
-      <label class="col-lg-2 control-label" for="telephone">Telephone <span class="require">*</span></label>
+      <label class="col-lg-2 control-label" for="telephone">{{ 'auth.phone' | translate }} <span class="require">*</span></label>
       <div class="col-lg-8">
         <input formControlName="phone" type="text" id="telephone" class="form-control">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-lg-2 control-label" for="fax">Address <span class="require">*</span></label>
+      <label class="col-lg-2 control-label" for="fax">{{ 'auth.address' | translate }} <span class="require">*</span></label>
       <div class="col-lg-8">
         <input formControlName="address" type="text" id="fax" class="form-control">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-md-2 control-label">Birthday</label>
+      <label class="col-md-2 control-label">{{ 'auth.birthday' | translate }}</label>
       <div class="col-md-8">
         <p-calendar formControlName="birthday"
                     [monthNavigator]="true"
@@ -49,7 +49,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="col-md-2 control-label">Gender</label>
+      <label class="col-md-2 control-label">{{ 'auth.gender' | translate }}</label>
       <div class="col-md-8">
         <div *ngFor="let gender of metadata.genders; let i = index" [ngStyle]="{ 'margin-right': '50px' }" class="radio abc-radio radio-inline">
           <input [ngStyle]="{ 'opacity': 1 }" type="radio" id="gender-{{gender.value}}" formControlName="gender" [value]="gender.value">
@@ -72,15 +72,19 @@
       </div>
     </div> -->
     <div class="form-group">
-      <label class="col-lg-2 control-label">File input</label>
+      <label class="col-lg-2 control-label">{{ 'auth.avatar' | translate }}</label>
       <div class="col-lg-8">
-        <input type="file">
-        <p class="help-block">some help text here.</p>
+        <input type="file" (change)="selectAvatar($event)">
+        <p class="help-block">{{ 'general.some_text_help' | translate }}</p>
+        <img class="image-avatar" src="http://localhost:3001/{{ userProfile?.avatar }}" alt="{{ userProfile?.name }}">
       </div>
     </div>
     <div class="row">
       <div class="col-lg-8 col-md-offset-2 padding-left-0 padding-top-20">
-        <button [disabled]="!form.valid" (click)="onSubmit()" class="btn btn-primary" type="submit">Update</button>
+        <button [disabled]="!form.valid"
+                (click)="onSubmit()"
+                class="btn btn-primary"
+                type="submit">{{ 'action.update' | translate }}</button>
       </div>
     </div>
   </form>

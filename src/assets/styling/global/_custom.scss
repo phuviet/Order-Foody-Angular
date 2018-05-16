@@ -1,3 +1,7 @@
+body {
+  font-family: 'FontAwesome' !important;
+}
+
 .no-padding {
   padding: 0 !important;
 }
@@ -73,6 +77,11 @@
   border-radius: 50% !important;
 }
 
+.image-avatar {
+  width: 150px;
+  height: 150px;
+}
+
 /* app alert */
 .app-alert {
   height: auto;
@@ -129,4 +138,9 @@
 
 .btn {
   border-radius: 4px !important;
+}
+
+.img-responsive {
+  width: 228px;
+  height: 304px;
 }

@@ -8,7 +8,7 @@ body .ecommerce {
 .ecommerce h4,
 .ecommerce h5,
 .ecommerce h6 {
-  font-family: "PT Sans Narrow", sans-serif;
+  font-family: "FontAwesome";
   margin: 0 0 10px;
   text-transform: uppercase;
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService, NotificationService, CartService, AuthService } from '../../../core/service/index';
 import { parseQuery } from '../../../shared/function/url';
+import { TranslateService } from '@ngx-translate/core'
+import { I18nService } from '../../../core/service/i18n/i18n.service';
 
 @Component({
   selector: 'app-header',
@@ -19,13 +21,21 @@ export class HeaderComponent implements OnInit {
   timeout: any;
   isTimeout: boolean;
   totalItem: number;
+  language: string;
 
   constructor(
     private api: ApiService,
     private ns: NotificationService,
     private cart: CartService,
-    private auth: AuthService
+    private auth: AuthService,
+    private translate: TranslateService,
+    private i18n: I18nService
   ) {
+    if (localStorage.getItem('lang')) {
+      this.language = localStorage.getItem('lang');
+    } else {
+      this.language = 'en';
+    }
     this.totalItem = 0;
     this.isTimeout = false;
     this.params = {};
@@ -87,6 +97,21 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.auth.logout();
+  }
+
+  changeLanguage(language: string) {
+    if (this.language !== language) {
+      this.ns.progress(true);
+      setTimeout(() => {
+        this.language = language;
+        this.i18n.switchLang(language);
+        this.ns.message({
+          type: 'success',
+          msg: 'general.change_language_success'
+        })
+        this.ns.progress(false);
+      }, 1000);
+    }
   }
    
   fetchData() {

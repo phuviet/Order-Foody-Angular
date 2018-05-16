@@ -1,4 +1,4 @@
-<h2>{{ 'auth.login_into_shop' | translate }}</h2>
+<h2 [ngStyle]="{ 'font-size': '26px' }">{{ 'auth.login_into_shop' | translate }}</h2>
 <form role="form" class="login-form" [formGroup]="loginForm">
   <div class="form-group">
     <label for="form-username">{{ 'auth.email' | translate }}</label>
@@ -15,5 +15,5 @@
   <button (click)="login()"
           [disabled]="!loginForm.valid"
           type="submit"
-          class="btn btn-primary form-button">{{ 'auth.sign_in' | translate }}!</button>
+          class="btn btn-primary form-button">{{ 'action.sign_in' | translate }}!</button>
 </form>

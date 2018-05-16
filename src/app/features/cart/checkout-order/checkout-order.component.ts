@@ -42,7 +42,7 @@ export class CheckoutOrderComponent implements OnInit {
   }
 
   parseTotalPrice(totalPrice: any) {
-    let array = (this.totalPriceCart / 2200000).toString().split('.');
+    let array = (this.totalPriceCart / 22000).toString().split('.');
     return array[0] + '.' + (array[1].substring(0, 1));
   }
 

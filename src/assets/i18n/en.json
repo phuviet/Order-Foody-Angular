@@ -1,6 +1,50 @@
 {
+  "action": {
+    "add_to_cart": "Add to cart",
+    "close": "Close",
+    "change": "Change",
+    "continue_shopping": "Continue shopping",
+    "check_out": "Check Out",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "update": "Update",
+    "register": "Register",
+    "sign_in": "Sign in",
+    "sign_out": "Sign out",
+    "search": "Search",
+    "view": "View",
+    "view_cart": "View Cart",
+    "zoom": "Zoom"
+  },
+
+  "account": {
+    "change_your_password": "Change your password",
+    "edit_account": "Edit your account information",
+    "view_your_orders": "View your order history",
+    "profile_update_success": "Your profile has been updated."
+  },
+
   "product": {
-    "description": "Description"
+    "comment": "Comment",
+    "comment_number": "Comments ({{number}})",
+    "description": "Description",
+    "hide_chile_comments": "Hide child comments.",
+    "image": "Image",
+    "no_have_review": "There are no reviews for this product.",
+    "no_have_comment": "There are no comments for this product.",
+    "quantity": "Quantity",
+    "unit_price": "Unit price",
+    "price": "Price",
+    "total": "Total",
+    "write_review": "Write a review",
+    "write_comment": "Write a comment",
+    "review": "Review",
+    "reviews": "review(s)",
+    "review_number": "Reviews ({{number}})",
+    "review_success": "You has been review for this food!",
+    "rating": "Rating",
+    "star": "Star",
+    "show_child_comment": "Show child comments."
   },
 
   "user": {
@@ -22,22 +66,68 @@
 
   "order": {
     "add_to_cart_success": "{{quantity}} {{product}} has been added to cart.",
+    "empty_cart": "Your shopping cart is empty",
+    "order_empty": "You have no order history here!",
+    "number_item": " {{number}} item(s)",
     "remove_from_cart_success": "{{product}} has been removed from cart.",
+    "receiver": "Receiver",
     "submit_success": "You has been order successfully, please check mail and wait for delivery!. Thank you!"
   },
 
-  "action": {
-    "close": "Close",
-    "cancel": "Cancel",
-    "submit": "Submit",
-    "check_out": "Check Out"
+  "auth": {
+    "avatar": "Avatar",
+    "address": "Address",
+    "birthday": "Birhtday",
+    "confirm": "Confirm",
+    "confirm_password": "Confirm Password",
+    "confirm_register": "Confirm Register",
+    "current_password": "Current Password",
+    "email": "Email",
+    "forgot": "Forgot",
+    "first_name": "First name",
+    "middle_name": "Middle name",
+    "new_password": "New Password",
+    "password": "Password",
+    "phone": "Phone",
+    "please_login_to_checkout": "Please login first to checkout this order!",
+    "last_name": "Last name",
+    "login_into_shop": "Login into our shop",
+    "restore_password": "Restore Password",
+    "gender": "Gender"
   },
 
-  "auth": {
-    "email": "Email",
-    "password": "Password",
-    "forgot": "Forgot",
-    "sign_in": "Sign in",
-    "login_into_shop": "Login into our shop"
+  "general": {
+    "about_us": "About Us",
+    "best_seller": "Best Sellers",
+    "back_to_home": "Back to homepage",
+    "categories": "Categories",
+    "check_out": "Check Out",
+    "confirm_order": "Confirm Order",
+    "change_password": "Change Password",
+    "change_language_success": "Change language successfully!",
+    "filter": "Filter",
+    "hello": "Hello",
+    "history": "History",
+    "home": "Home",
+    "information": "Information",
+    "my_account": "My Account",
+    "my_account_page": "My Account Page",
+    "my_profile": "My Profile",
+    "my_orders": "My Order",
+    "no_food_search": "There is no suitable food!",
+    "order_history": "Order History",
+    "newest_product": "Newest Products",
+    "pointer_product": "Product Pointers",
+    "register_now": "Register Now",
+    "range": "Range",
+    "shopping_cart": "Shopping Cart",
+    "some_text_help": "some help text here.",
+    "sort_by": "Sort by",
+    "en": "English",
+    "vn": "Vietnamese"
+  },
+
+  "shop_detail": {
+    "our_contact" : "Our Contacts"
   }
 }
