@@ -43,12 +43,12 @@
                 <img width="70" height="70" src="http://localhost:3001/{{ itemCart?.avatar }}" alt="{{ itemCart?.name }}">
               </td>
               <td class="text-center">{{ itemCart?.quantity }}</td>
-              <td class="text-center">{{ itemCart?.price }}</td>
-              <td class="text-center">{{ itemCart?.total }}</td>
+              <td class="text-center">{{ itemCart?.price }} VNĐ</td>
+              <td class="text-center">{{ itemCart?.total }} VNĐ</td>
             </tr>
             <tr>
               <td colspan="4" class="text-right" [ngStyle]="{ 'padding-right': '45px' }">
-                {{ 'product.total' | translate }}: <strong>{{ totalPriceCart }} = ${{ totalPriceCartUSD }}</strong>
+                {{ 'product.total' | translate }}: <strong>{{ totalPriceCart }} VNĐ = ${{ totalPriceCartUSD }}</strong>
               </td>
             </tr>
           </table>

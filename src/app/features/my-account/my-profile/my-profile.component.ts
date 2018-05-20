@@ -49,8 +49,7 @@ export class MyProfileComponent implements OnInit {
       phone: ['', Validators.required],
       address: ['', Validators.required],
       birthday: ['', Validators.required],
-      gender: ['', Validators.required],
-      avatar: ['']
+      gender: ['', Validators.required]
     });
   }
 
@@ -84,7 +83,9 @@ export class MyProfileComponent implements OnInit {
 
   parseData() {
     let data = this.form.value;
-    data.avatar = this.avatar;
+    if (this.avatar) {
+      data.avatar = this.avatar;
+    }
     return data;
   }
 

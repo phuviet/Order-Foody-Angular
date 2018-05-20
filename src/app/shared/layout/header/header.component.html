@@ -61,7 +61,7 @@
       <div class="top-cart-block">
         <div class="top-cart-info">
           <a [routerLink]="['/cart']" class="top-cart-info-count">{{ 'order.number_item' | translate: { number: totalItem } }}</a>
-          <a [routerLink]="['/cart']" class="top-cart-info-value">{{ totalPriceCart }}</a>
+          <a [routerLink]="['/cart']" class="top-cart-info-value">{{ totalPriceCart }} VNĐ</a>
         </div>
         <a [routerLink]="['/cart']"><i class="fa fa-shopping-cart"></i></a>
         <div *ngIf="currentCart?.length" class="top-cart-content-wrapper">
@@ -74,7 +74,7 @@
                   </a>
                   <span class="cart-content-count">x {{ itemCart?.quantity }}</span>
                   <strong><a [routerLink]="['/product-detail', itemCart?.id]">{{ itemCart?.name }}</a></strong>
-                  <em>{{ itemCart?.total }}</em>
+                  <em>{{ itemCart?.total }} VNĐ</em>
                   <a (click)="removeItemCart(itemCart.id)" class="del-goods">&nbsp;</a>
                 </li>
               </ng-template>

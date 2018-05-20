@@ -131,7 +131,7 @@ export class CartComponent implements OnInit {
         this.ns.message({
           type: 'success',
           msg: 'order.submit_success'
-        })
+        });
       }, (error: any) => {
         //
       }, () => {
