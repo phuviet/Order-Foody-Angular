@@ -96,8 +96,14 @@ export class ApiService {
    * @return {Observable<Response>}         Response data and/or error message
    */
   public put(uri: Array<any> | any, body: any, options?: RequestOptionsArgs): Observable<Response> {
+    options = options || {};
+    options.headers = this._customHeaders();
     let [url, moreOptions] = this._constructRequest(uri, options);
-    let request = this.authHttp.put(url, body, moreOptions);
+    let formData: FormData = new FormData();
+    Object.keys(body).forEach((key: any) => {
+      formData.append(key, body[key]);
+    });
+    let request = this.authHttp.put(url, formData, moreOptions);
     return this._connect(request);
   }
 

@@ -23,7 +23,7 @@
                           [ngModel]="item?.star"
                           [readonly]="true"></p-rating>
               </div>
-              <div class="price">{{ item?.price }}</div>
+              <div class="price">{{ item?.price }} VNĐ</div>
             </div>
           </ng-template>
         </div>
@@ -41,16 +41,14 @@
                 <!-- <p-dropdown [options]="sortOptionList"
                             styleClass="dropdown-sm">
                 </p-dropdown> -->
-                <select class="form-control input-sm">
-                  <option value="#?sort=p.sort_order&amp;order=ASC" selected="selected">Default</option>
-                  <option value="#?sort=pd.name&amp;order=ASC">Name (A - Z)</option>
-                  <option value="#?sort=pd.name&amp;order=DESC">Name (Z - A)</option>
-                  <option value="#?sort=p.price&amp;order=ASC">Price (Low &gt; High)</option>
-                  <option value="#?sort=p.price&amp;order=DESC">Price (High &gt; Low)</option>
-                  <option value="#?sort=rating&amp;order=DESC">Rating (Highest)</option>
-                  <option value="#?sort=rating&amp;order=ASC">Rating (Lowest)</option>
-                  <option value="#?sort=p.model&amp;order=ASC">Model (A - Z)</option>
-                  <option value="#?sort=p.model&amp;order=DESC">Model (Z - A)</option>
+                <select class="form-control input-sm" (change)="sortChange($event)">
+                  <option value="id&amp;ASC" selected="selected">Default</option>
+                  <option value="name&amp;ASC">Name (A - Z)</option>
+                  <option value="name&amp;DESC">Name (Z - A)</option>
+                  <option value="price&amp;ASC">Price (Low &gt; High)</option>
+                  <option value="price&amp;DESC">Price (High &gt; Low)</option>
+                  <option value="star&amp;DESC">Rating (Highest)</option>
+                  <option value="star&amp;ASC">Rating (Lowest)</option>
                 </select>
               </div>
             </div>
@@ -73,15 +71,16 @@
                           [ngModel]="item?.star"
                           [readonly]="true"></p-rating>
               </div>
-              <div class="pi-price">{{ item?.price }}</div>
+              <div class="pi-price">{{ item?.price }} VNĐ</div>
               <a (click)="addToCart(item)" class="btn btn-default add2cart">{{ 'action.add_to_cart' | translate }}</a>
             </div>
           </div>
         </ng-template>
         <div class="col-md-12 pull-right margin-top-25">
-          <p-paginator pageLinkSize="{{ datatableConfigs.pageLinks }}"
+          <p-paginator #paginator pageLinkSize="{{ datatableConfigs.pageLinks }}"
                       [rows]="datatableConfigs.rows"
                       [totalRecords]="datatableConfigs.totalRecords"
+                      [alwaysShow]="false"
                       (onPageChange)="loadData($event)"></p-paginator>
         </div>
       </div>

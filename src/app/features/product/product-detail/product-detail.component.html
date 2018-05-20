@@ -15,7 +15,7 @@
                           [ngModel]="item?.star"
                           [readonly]="true"></p-rating>
               </div>
-              <div class="price">{{ item?.price }}</div>
+              <div class="price">{{ item?.price }} VNĐ</div>
             </div>
           </ng-template>
         </div>
@@ -39,7 +39,7 @@
               <h1>{{ product?.name }}</h1>
               <div class="price-availability-block clearfix">
                 <div class="price">
-                  <strong>{{ product?.price }}</strong>
+                  <strong>{{ product?.price }} VNĐ</strong>
                 </div>
                 <!-- <div class="availability">
                   Availability: <strong>In Stock</strong>
@@ -237,7 +237,7 @@
                           [ngModel]="item?.star"
                           [readonly]="true"></p-rating>
               </div>
-              <div class="pi-price">{{ item?.price }}</div>
+              <div class="pi-price">{{ item?.price }} VNĐ</div>
               <a (click)="addToCart(item, 1)" class="btn btn-default add2cart">{{ 'action.add_to_cart' | translate }}</a>
               <div class="sticker sticker-{{ item?.title }}"></div>
             </div>

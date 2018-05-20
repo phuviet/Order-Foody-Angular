@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService, NotificationService } from '../../../core/service/index';
 import { Router, ActivatedRoute } from '@angular/router';
 import { datatableConfigs, DataTableConfigs } from '../../../shared/model/datatable.config';
 import { parseQuery, updateQuery } from '../../../shared/function/url';
+import { compare } from '../../../shared/function/data';
 
 @Component({
   selector: 'app-product-list',
@@ -10,12 +11,15 @@ import { parseQuery, updateQuery } from '../../../shared/function/url';
 })
 export class ProductListComponent implements OnInit {
 
+  @ViewChild('paginator') paginator: any;
+
   sortOptionList: any;
   productList: any;
   categoryId: number;
   datatableConfigs: DataTableConfigs;
   bestSellersProduct: any;
   params: any;
+  optionsSort: any;
 
   constructor(
     private api: ApiService,
@@ -25,6 +29,7 @@ export class ProductListComponent implements OnInit {
   ) {
     this.productList = [];
     this.params = {};
+    this.optionsSort = ['id', 'ASC'];
     this.datatableConfigs = datatableConfigs();
     this.sortOptionList = [
       {
@@ -60,8 +65,9 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: any) => {
-      this.params.page = 1;
       if (params && params.id) {
+        this.params.page = 1;
+        this.paginator.first = 0;
         this.categoryId = +params['id'];
       }
       this.fetchData();
@@ -101,13 +107,31 @@ export class ProductListComponent implements OnInit {
       }, (error: any) => {
         //
       }, () => {
-        //
+        this.sortChange();
       }
     )
   }
 
+  sortChange(e?: any) {
+    this.optionsSort = e ? e.target.value.split('&') : this.optionsSort;
+    if (e) {
+      this.ns.progress(true);
+      setTimeout(() => {
+        this.datatableConfigs.value.sort((item1: any, item2: any) => {
+          return compare(item1, item2, this.optionsSort[0], this.optionsSort[1]);
+        });
+        this.ns.progress(false);
+      }, 500);
+    } else {
+      this.datatableConfigs.value.sort((item1: any, item2: any) => {
+        return compare(item1, item2, this.optionsSort[0], this.optionsSort[1]);
+      });
+    }
+  }
+
   loadData(e: any) {
     this.params.page = e.page + 1;
-    this.router.navigate(updateQuery(this.route.snapshot, this.params));
+    this.fetchData();
+    // this.router.navigate(updateQuery(this.route.snapshot, this.params));
   }
 }

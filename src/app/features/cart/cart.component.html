@@ -32,10 +32,10 @@
                     </div>
                   </td>
                   <td class="goods-page-price">
-                    <strong>{{ orderItem?.price }}</strong>
+                    <strong>{{ orderItem?.price }} VNĐ</strong>
                   </td>
                   <td class="goods-page-total">
-                    <strong>{{ orderItem?.total }}</strong>
+                    <strong>{{ orderItem?.total }} VNĐ</strong>
                   </td>
                   <td class="del-goods-col">
                     <a (click)="removeItemCart(orderItem)" class="del-goods">&nbsp;</a>
@@ -47,7 +47,7 @@
                 <ul>
                   <li class="shopping-total-price">
                     <em>{{ 'product.total' | translate }}</em>
-                    <strong class="price">{{ totalPriceCart }}</strong>
+                    <strong class="price">{{ totalPriceCart }} VNĐ</strong>
                   </li>
                 </ul>
               </div>

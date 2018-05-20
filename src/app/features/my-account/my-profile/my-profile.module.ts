@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { SharedModule } from '../../../shared/module/shared.module';
 import { MyProfileComponent } from './my-profile.component';
-import { CalendarModule, FileUploadModule } from 'primeng/primeng';
+import { CalendarModule } from 'primeng/primeng';
 
 const routes: Routes = [
   {
@@ -18,7 +18,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     CalendarModule,
-    FileUploadModule,
     RouterModule.forChild(routes)
   ],
   declarations: [
