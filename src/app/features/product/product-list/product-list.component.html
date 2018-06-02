@@ -8,7 +8,7 @@
           <h3>{{ 'product.price' | translate }}</h3>
           <p>
             <label for="amount">{{ 'general.range' | translate }}: $50 - $100</label>
-            <p-slider [min]="50" [max]="100"></p-slider>
+            <p-slider [range]="true" [min]="50" [max]="100"></p-slider>
           </p>
         </div>
         <div class="sidebar-products clearfix">

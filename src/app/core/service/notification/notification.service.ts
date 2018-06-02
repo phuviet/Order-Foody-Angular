@@ -83,11 +83,15 @@ export class NotificationService {
    * @method cart
    */
 
-   cart(product: any, quantity: number) {
-     this.cart$.next({
-       product: product,
-       quantity: quantity
-      });
+   cart(product: any, quantity?: number) {
+     if (product) {
+       this.cart$.next({
+         product: product,
+         quantity: quantity
+        });
+     } else {
+       this.cart$.next(null);
+     }
      return product;
    }
 

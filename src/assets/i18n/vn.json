@@ -30,6 +30,7 @@
     "description": "Miêu tả",
     "hide_chile_comments": "Ẩn bình luận con.",
     "image": "Hình ảnh",
+    "name": "Tên",
     "no_have_review": "Không có đánh giá nào cho sản phẩm này.",
     "no_have_comment": "Không có bình luận nào cho sản phẩm này.",
     "quantity": "Số lượng",
@@ -45,6 +46,14 @@
     "rating": "Xếp hạng",
     "star": "Sao",
     "show_child_comment": "Hiện bình luận con."
+  },
+
+  "error": {
+    "form": {
+      "email_valid": "Vui lòng nhập đúng định dạng email",
+      "required": "Vui lòng nhập dữ liệu",
+      "password_confirm": "Mật khẩu xác nhận không khớp"
+    }
   },
 
   "user": {
@@ -65,13 +74,21 @@
   },
 
   "order": {
+    "postpaid": "Trả sau",
     "add_to_cart_success": "{{quantity}} {{product}} vừa được thêm vào giỏ hàng.",
+    "confirm_checkout_header": "Xác nhận thanh toán",
+    "confirm_checkout": "<h4 class='text-transform-none'>Bạn chắc chắn muốn thanh toán đơn hàng này?</h4>",
     "empty_cart": "Giỏ hàng của bạn rỗng!",
     "order_empty": "Bạn không có lịch sử đặt hàng nào ở đây!",
     "number_item": " {{number}} sản phẩm",
     "remove_from_cart_success": "{{product}} vừa được xoá khỏi giỏ hàng.",
     "receiver": "Người nhận",
-    "submit_success": "Bạn vừa đặt hàng thành công, vui lòng kiểm tra mail và đợi giao hàng. Cảm ơn!"
+    "submit_success": "Bạn vừa đặt hàng thành công, vui lòng kiểm tra mail và đợi giao hàng. Cảm ơn!",
+    "status": {
+      "title": "Trạng thái",
+      "paid": "Đã thanh toán",
+      "ordered": "Thanh toán khi giao hàng"
+    }
   },
 
   "auth": {
@@ -92,6 +109,7 @@
     "please_login_to_checkout": "Làm ơn đăng nhập trước để thanh toán đơn hàng!",
     "last_name": "Họ",
     "login_into_shop": "Đăng nhập vào cửa hàng",
+    "login_failure": "Email hoặc mật khẩu không chính xác, vui lòng thử lại!",
     "restore_password": "Lấy lại mật khẩu",
     "gender": "Giới tính"
   },

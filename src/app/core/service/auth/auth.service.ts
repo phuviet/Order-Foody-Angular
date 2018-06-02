@@ -50,8 +50,6 @@ export class AuthService {
   storeUserInformation(data: any) {
     if (data) {
       localStorage.setItem('token', data.access_token);
-      // localStorage.setItem('organizations', JSON.stringify(data.organizations));
-      // localStorage.setItem('permissions', JSON.stringify(data.permissions));
     } else {
       this.logger.next(false);
     }
@@ -59,8 +57,6 @@ export class AuthService {
 
   destroyUserInformation() {
     localStorage.removeItem('token');
-    // localStorage.removeItem('organizations');
-    // localStorage.removeItem('permissions');
   }
 
   getUserInfo() {
@@ -70,11 +66,6 @@ export class AuthService {
       userInfo = this.jwtHelper.decodeToken(token);
     }
     return userInfo.user || {};
-    // console.log(
-    //   this.jwtHelper.decodeToken(token),
-    //   this.jwtHelper.getTokenExpirationDate(token),
-    //   this.jwtHelper.isTokenExpired(token)
-    // );
   }
 
   getUserPermission() {

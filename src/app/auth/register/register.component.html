@@ -1,25 +1,31 @@
-<h2>{{ 'action.register' | translate }}</h2>
-<form role="form" class="login-form" [formGroup]="registerForm">
-  <div class="form-group">
-    <label for="form-username">{{ 'auth.email' | translate }} <span class="require">*</span></label>
-    <input formControlName="email" type="email" name="email" placeholder="{{ 'auth.email' | translate }}..." class="form-input form-control">
-  </div>
-  <div class="form-group">
-    <label for="form-password">{{ 'auth.password' | translate }}</label>
-    <div class="input-group form-input">
-      <input formControlName="password" type="password" name="password" placeholder="{{ 'auth.password' | translate }}..."
-             class="form-password form-control">
+<div class="register">
+  <h2>{{ 'action.register' | translate }}</h2>
+  <form role="form" class="login-form" [formGroup]="registerForm">
+    <div class="form-group">
+      <label for="form-username">{{ 'auth.email' | translate }} <span class="require">*</span></label>
+      <input formControlName="email" type="email" name="email" placeholder="{{ 'auth.email' | translate }}..." class="form-input form-control">
+      <span class="help-block">{{ 'error.form.email_valid' | translate }}</span>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="form-password">{{ 'auth.confirm_password' | translate }}</label>
-    <div class="input-group form-input">
-      <input formControlName="password_confirmation" type="password" name="password_confirmation" placeholder="{{ 'auth.confirm_password' | translate }}..."
-              class="form-password form-control">
+    <div class="form-group">
+      <label for="form-password">{{ 'auth.password' | translate }}</label>
+      <div class="input-group form-input">
+        <input formControlName="password" type="password" name="password" placeholder="{{ 'auth.password' | translate }}..."
+               class="form-password form-control">
+        <span class="help-block">{{ 'error.form.required' | translate }}</span>
+      </div>
     </div>
-  </div>
-  <button (click)="register()"
-          [disabled]="!registerForm.valid || !isPasswordMatch() || isProcessing"
-          type="submit"
-          class="btn btn-primary form-button">{{ 'action.register' | translate }}!</button>
-</form>
+    <div class="form-group">
+      <label for="form-password">{{ 'auth.confirm_password' | translate }}</label>
+      <div class="input-group form-input">
+        <input formControlName="password_confirmation" type="password" name="password_confirmation" placeholder="{{ 'auth.confirm_password' | translate }}..."
+                class="form-password form-control">
+        <span class="help-block">{{ 'error.form.required' | translate }}</span>
+        <span *ngIf="!isPasswordMatch()" class="help-block confirm-password">{{ 'error.form.password_confirm' | translate }}</span>
+      </div>
+    </div>
+    <button (click)="register()"
+            [disabled]="!registerForm.valid || !isPasswordMatch() || isProcessing"
+            type="submit"
+            class="btn btn-primary form-button">{{ 'action.register' | translate }}!</button>
+  </form>
+</div>

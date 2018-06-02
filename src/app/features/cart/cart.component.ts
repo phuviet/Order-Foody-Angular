@@ -126,6 +126,8 @@ export class CartComponent implements OnInit {
     this.api.post(['orders'], dataRequest).subscribe(
       (data: any) => {
         this.currentCart = [];
+        localStorage.setItem('cart', JSON.stringify([]));
+        this.cart.updateEmptyCart();
         this.cart.updateTotalPriceCart();
         this.cart.updateTotalItem();
         this.ns.message({

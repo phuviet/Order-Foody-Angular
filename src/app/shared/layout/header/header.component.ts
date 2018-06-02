@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiService, NotificationService, CartService, AuthService } from '../../../core/service/index';
 import { parseQuery } from '../../../shared/function/url';
 import { TranslateService } from '@ngx-translate/core'
@@ -8,7 +8,7 @@ import { I18nService } from '../../../core/service/i18n/i18n.service';
   selector: 'app-header',
   templateUrl: './header.component.html'
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   userInfo: any;
   categories: any;
@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
   isTimeout: boolean;
   totalItem: number;
   language: string;
+  subscribe: any;
 
   constructor(
     private api: ApiService,
@@ -45,7 +46,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ns.cartObserver().subscribe((data: any) => {
+    this.subscribe = this.ns.cartObserver().subscribe((data: any) => {
       if (data) {
         this.checkExistProductInCart(data);
       }
@@ -68,6 +69,13 @@ export class HeaderComponent implements OnInit {
     this.fetchData();
     if (this.userInfo.id) {
       this.fetchProductWatched();
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.subscribe) {
+      this.ns.cart(null);
+      this.subscribe.unsubscribe();
     }
   }
 
