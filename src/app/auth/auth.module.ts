@@ -22,20 +22,6 @@ const routes: Routes = [
         path: 'confirm-register',
         loadChildren: 'app/auth/confirm-register/confirm-register.module#ConfirmRegisterModule'
       }
-      // {
-      //   path: 'reset-password',
-      //   children: [
-      //     {
-      //       path: '',
-      //       pathMatch: 'full',
-      //       loadChildren: 'app/auth/reset-password/reset-password.module#ResetPasswordModule'
-      //     },
-      //     {
-      //       path: ':digest',
-      //       loadChildren: 'app/auth/reset-password/reset-password.module#ResetPasswordModule'
-      //     }
-      //   ]
-      // }
     ]
   }
 ]

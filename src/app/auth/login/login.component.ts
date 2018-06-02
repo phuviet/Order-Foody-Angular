@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm, Form } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
-import { ApiService, AuthService } from '../../core/service/index';
+import { ApiService, AuthService, NotificationService } from '../../core/service/index';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private api: ApiService,
     private auth: AuthService,
+    private ns: NotificationService,
     private fb: FormBuilder
   ) { }
 
@@ -34,7 +35,10 @@ export class LoginComponent implements OnInit {
       (data: any) => {
         this.auth.login(data);
       }, (err: any) => {
-        //
+        this.ns.message({
+          type: 'danger',
+          msg: 'auth.login_failure'
+        })
       }, () => {
         //
       }

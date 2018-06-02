@@ -30,6 +30,7 @@
     "description": "Description",
     "hide_chile_comments": "Hide child comments.",
     "image": "Image",
+    "name": "Name",
     "no_have_review": "There are no reviews for this product.",
     "no_have_comment": "There are no comments for this product.",
     "quantity": "Quantity",
@@ -45,6 +46,14 @@
     "rating": "Rating",
     "star": "Star",
     "show_child_comment": "Show child comments."
+  },
+
+  "error": {
+    "form": {
+      "email_valid": "Please enter value follow email address format",
+      "required": "Please enter value",
+      "password_confirm": "Confirm password is not match"
+    }
   },
 
   "user": {
@@ -65,13 +74,21 @@
   },
 
   "order": {
+    "postpaid": "Postpaid",
     "add_to_cart_success": "{{quantity}} {{product}} has been added to cart.",
+    "confirm_checkout_header": "Confirm checkout",
+    "confirm_checkout": "<h4 class='text-transform-none'>Are you sure to checkout this order!</h4>",
     "empty_cart": "Your shopping cart is empty",
     "order_empty": "You have no order history here!",
     "number_item": " {{number}} item(s)",
     "remove_from_cart_success": "{{product}} has been removed from cart.",
     "receiver": "Receiver",
-    "submit_success": "You has been order successfully, please check mail and wait for delivery!. Thank you!"
+    "submit_success": "You has been order successfully, please check mail and wait for delivery!. Thank you!",
+    "status": {
+      "title": "Status",
+      "paid": "Paid",
+      "ordered": "Payment upon delivery"
+    }
   },
 
   "auth": {
@@ -92,6 +109,7 @@
     "please_login_to_checkout": "Please login first to checkout this order!",
     "last_name": "Last name",
     "login_into_shop": "Login into our shop",
+    "login_failure": "Email or password is incorrect, please try again!",
     "restore_password": "Restore Password",
     "gender": "Gender"
   },

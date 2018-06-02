@@ -5,6 +5,7 @@
       <label class="col-lg-2 control-label" for="first-name">{{ 'auth.first_name' | translate }} <span class="require">*</span></label>
       <div class="col-lg-8">
         <input formControlName="first_name" type="text" id="first-name" class="form-control">
+        <span class="help-block">{{ 'error.form.required' | translate }}</span>
       </div>
     </div>
     <div class="form-group">
@@ -17,24 +18,28 @@
       <label class="col-lg-2 control-label" for="last-name">{{ 'auth.last_name' | translate }} <span class="require">*</span></label>
       <div class="col-lg-8">
         <input formControlName="last_name" type="text" id="first-name" class="form-control">
+        <span class="help-block">{{ 'error.form.required' | translate }}</span>
       </div>
     </div>
     <div class="form-group">
       <label class="col-lg-2 control-label" for="email">{{ 'auth.email' | translate }} <span class="require">*</span></label>
       <div class="col-lg-8">
         <input formControlName="email" type="text" id="email" class="form-control" disabled>
+        <span class="help-block">{{ 'error.form.email_valid' | translate }}</span>
       </div>
     </div>
     <div class="form-group">
       <label class="col-lg-2 control-label" for="telephone">{{ 'auth.phone' | translate }} <span class="require">*</span></label>
       <div class="col-lg-8">
         <input formControlName="phone" type="text" id="telephone" class="form-control">
+        <span class="help-block">{{ 'error.form.required' | translate }}</span>
       </div>
     </div>
     <div class="form-group">
       <label class="col-lg-2 control-label" for="fax">{{ 'auth.address' | translate }} <span class="require">*</span></label>
       <div class="col-lg-8">
         <input formControlName="address" type="text" id="fax" class="form-control">
+        <span class="help-block">{{ 'error.form.required' | translate }}</span>
       </div>
     </div>
     <div class="form-group">

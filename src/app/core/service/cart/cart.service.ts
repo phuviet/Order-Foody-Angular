@@ -31,6 +31,13 @@ export class CartService {
     this.price$.next(this.totalPriceCart);
   }
 
+  updateEmptyCart() {
+    if (localStorage.getItem('cart')) {
+      this.currentCart = JSON.parse(localStorage.getItem('cart'));
+    }
+    this.cart$.next(this.currentCart);
+  }
+
   removeItemCart(id: any) {
     let indexItemRemove = this.currentCart.findIndex((item: any) => item.id === id);
     this.currentCart.splice(indexItemRemove, 1);

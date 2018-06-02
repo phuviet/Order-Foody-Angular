@@ -88,6 +88,10 @@ export class ProductDetailComponent implements OnInit {
     this.api.post(['votes'], this.formReview.value).subscribe(
       (data: any) => {
         this.product.votes = data;
+        let reviewUser = this.product.votes.find((item: any) => item.user.id === this.userInfo.id);
+        if (reviewUser) {
+          this.isCanReview = false;
+        }
         this.parseDateReview(this.product.votes);
         this.formReview.reset();
         this.ns.message({
@@ -102,8 +106,41 @@ export class ProductDetailComponent implements OnInit {
     )
   }
 
-  submitComment(id: number) {
+  commentChild(e: any, parentId: number) {
+    if (e.keyCode === 13 && e.target.value) {
+      let dataRequest = {
+        context: e.target.value,
+        product_id: this.productId,
+        parent_id: parentId
+      }
+      this.api.post(['comments'], dataRequest).subscribe(
+        (data: any) => {
+          e.target.value = '';
+          this.product.parent_comments = data;
+          this.parseDateComment(this.product.parent_comments);
+        }, (error: any) => {
+          //
+        }, () => {
+          //
+        }
+      )
+    }
+  }
 
+  submitComment() {
+    this.formComment.controls['product_id'].setValue(this.productId);
+    this.isProcessing = this.ns.progress(true);
+    this.api.post(['comments'], this.formComment.value).subscribe(
+      (data: any) => {
+        this.product.parent_comments = data;
+        this.parseDateComment(this.product.parent_comments);
+        this.formComment.reset();
+      }, (error: any) => {
+        this.isProcessing = this.ns.progress(false);
+      }, () => {
+        this.isProcessing = this.ns.progress(false);
+      }
+    )
   }
 
   fetchProductPointer() {

@@ -1,19 +1,23 @@
-<h2 [ngStyle]="{ 'font-size': '26px' }">{{ 'auth.login_into_shop' | translate }}</h2>
-<form role="form" class="login-form" [formGroup]="loginForm">
-  <div class="form-group">
-    <label for="form-username">{{ 'auth.email' | translate }}</label>
-    <input formControlName="email" type="email" name="email" placeholder="{{ 'auth.email' | translate }}..." class="form-input form-control">
-  </div>
-  <div class="form-group">
-    <label for="form-password">{{ 'auth.password' | translate }}</label>
-    <div class="input-group form-input">
-      <input formControlName="password" type="password" name="password" placeholder="{{ 'auth.password' | translate }}..."
-             class="form-password form-control">
-      <span class="input-group-addon" id="basic-addon2"><a [routerLink]="['/reset_password']" target="_blank">{{ 'auth.forgot' | translate }}?</a></span>
+<div class="login">
+  <h2 [ngStyle]="{ 'font-size': '26px' }">{{ 'auth.login_into_shop' | translate }}</h2>
+  <form role="form" class="login-form" [formGroup]="loginForm">
+    <div class="form-group">
+      <label for="form-username">{{ 'auth.email' | translate }}</label>
+      <input formControlName="email" type="email" name="email" placeholder="{{ 'auth.email' | translate }}..." class="form-input form-control">
+      <span class="help-block">{{ 'error.form.email_valid' | translate }}</span>
     </div>
-  </div>
-  <button (click)="login()"
-          [disabled]="!loginForm.valid"
-          type="submit"
-          class="btn btn-primary form-button">{{ 'action.sign_in' | translate }}!</button>
-</form>
+    <div class="form-group">
+      <label for="form-password">{{ 'auth.password' | translate }}</label>
+      <div class="input-group form-input">
+        <input formControlName="password" type="password" name="password" placeholder="{{ 'auth.password' | translate }}..."
+               class="form-password form-control">
+        <span class="help-block">{{ 'error.form.required' | translate }}</span>
+        <span class="input-group-addon" id="basic-addon2"><a [routerLink]="['/reset_password']" target="_blank">{{ 'auth.forgot' | translate }}?</a></span>
+      </div>
+    </div>
+    <button (click)="login()"
+            [disabled]="!loginForm.valid"
+            type="submit"
+            class="btn btn-primary form-button">{{ 'action.sign_in' | translate }}!</button>
+  </form>
+</div>

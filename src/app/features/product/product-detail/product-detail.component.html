@@ -127,17 +127,17 @@
                           </div>
                         </div>
                         <div class="m-l-sm">
-                          <div class="review-item-content">
+                          <div [ngStyle]="{ 'margin-left': '45px' }" class="review-item-content">
                             <p class="no-margin">{{ parentItem?.context }}</p>
                           </div>
                           <div class="text-right review-item-submitted clearfix no-margin">
                             <em>{{ parentItem?.from_now }}</em>
                           </div>
-                          <p *ngIf="parentItem?.child_comments?.length && !parentItem.isShowChildComment" class="margin-bottom-10">
+                          <p *ngIf="parentItem?.child_comments?.length && !parentItem.isShowChildComment" class="margin-bottom-10 m-l-xxl">
                             <a (click)="toggleShowComment(parentItem)">{{ 'product.show_child_comment' | translate }}</a>
                           </p>
                         </div>
-                        <div class="m-l-xl children-comment">
+                        <div class="m-l-xxl m-t-sm children-comment margin-bottom-20">
                           <ng-template [ngIf]="parentItem?.isShowChildComment">
                             <div *ngFor="let childItem of parentItem.child_comments; let lastChild = last">
                               <div class="review-item-submitted clearfix">
@@ -146,7 +146,7 @@
                                   <strong class="m-l-sm display-inline-block">{{ childItem?.user?.full_name }}</strong>
                                 </div>
                               </div>
-                              <div class="m-l-sm">
+                              <div class="m-l-xxl">
                                 <div class="review-item-content">
                                   <p class="no-margin">{{ childItem?.context }}</p>
                                 </div>
@@ -158,12 +158,14 @@
                             </div>
                           </ng-template>
                         </div>
-                        <!-- <div>
-                          <input class="m-l-sm" type="text" [ngStyle]="{ 'width': '99%', 'height': '30px' }">
-                        </div> -->
-                        <p class="m-l-sm" *ngIf="parentItem?.child_comments?.length && parentItem.isShowChildComment">
-                          <a (click)="toggleShowComment(parentItem)">{{ 'product.hide_chile_comments' | translate }}</a>
-                        </p>
+                        <div class="clear-after">
+                          <input (keyup)="commentChild($event, parentItem?.id)" class="m-l-sm input-comment" type="text">
+                        </div>
+                        <div class="display-block">
+                          <p class="m-t-sm" *ngIf="parentItem?.child_comments?.length && parentItem.isShowChildComment" [ngStyle]="{ 'margin-left': '45px' }">
+                            <a (click)="toggleShowComment(parentItem)">{{ 'product.hide_chile_comments' | translate }}</a>
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </ng-template>

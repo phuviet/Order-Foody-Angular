@@ -19,7 +19,6 @@ export class CheckoutOrderComponent implements OnInit {
   totalPriceCartUSD: any;
   form: FormGroup;
   isVisible: boolean;
-  statusPayment: any;
 
   constructor(
     private ns: NotificationService,
@@ -80,8 +79,6 @@ export class CheckoutOrderComponent implements OnInit {
           // Make a call to the REST api to execute the payment
           return actions.payment.execute().then(() => {
             this.isVisible = false;
-            this.statusPayment = 1;
-            localStorage.setItem('cart', JSON.stringify([]));
             this.accept();
             // window.alert('Payment Complete!');
           });
@@ -100,17 +97,18 @@ export class CheckoutOrderComponent implements OnInit {
     this.isVisible = false;
   }
 
-  prepareData() {
+  prepareData(status: number) {
     let data: any = {};
     data = Object.assign(this.form.value, {
       cart: this.currentCart,
-      status: this.statusPayment
+      status: status
     });
     return data;
   }
 
-  accept() {
-    this.ns.dynamicDialog(this.prepareData());
+  accept(status: number = 1) {
+    let dataRequest = this.prepareData(status);
+    this.ns.dynamicDialog(dataRequest);
     this.ns.dialogCallback(true);
     this.close();
   }

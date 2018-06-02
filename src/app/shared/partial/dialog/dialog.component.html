@@ -5,15 +5,8 @@
       {{ dialog?.header | translate }}
       <a (click)="close()" class="fa fa-fw fa-close"></a>
     </p-header>
-    <!-- <ng-template [ngIf]="dialog.contentType === 'html'">
-      <ng-template [ngIf]="dialog.contentObj.type === 'usage'">
-        <div [innerHTML]="dialog.content | safeHtml">
-        </div>
-      </ng-template>
-    </ng-template> -->
-    <h1>Viet Nguyen P.</h1>
     <ng-template [ngIf]="dialog.contentType !== 'html'">
-      {{ dialog?.content | translate:dialog?.contentObj }}
+      <div innerHTML="{{ dialog?.content | translate:dialog?.contentObj }}"></div>
     </ng-template>
     <p-footer>
       <ng-template [ngIf]="dialog.type === 'alert'">

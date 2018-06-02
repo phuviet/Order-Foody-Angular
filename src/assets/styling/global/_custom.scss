@@ -10,8 +10,20 @@ body {
   margin: 0 !important;
 }
 
+.clear-after {
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
 .display-inline {
   display: inline !important;
+}
+
+.display-block {
+  display: block !important;
 }
 
 .display-inline-block {
@@ -48,6 +60,10 @@ body {
 
 .m-l-xl {
   margin-left: 30px;
+}
+
+.m-l-xxl {
+  margin-left: 52px;
 }
 
 .m-t-sm {
@@ -143,4 +159,8 @@ body {
 .img-responsive {
   width: 228px;
   height: 304px;
+}
+
+.text-transform-none {
+  text-transform: none !important;
 }

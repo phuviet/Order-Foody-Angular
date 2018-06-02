@@ -18,6 +18,10 @@
           <p class="col-md-4">{{ 'auth.address' | translate }}:</p>
           <p class="col-md-8">{{ order?.address }}</p>
         </div>
+        <div class="col-md-12">
+          <p class="col-md-4">{{ 'order.status.title' | translate }}:</p>
+          <p class="col-md-8">{{ 'order.status.' + order?.status | translate }}</p>
+        </div>
       </div>
     </div>
     <div class="row">

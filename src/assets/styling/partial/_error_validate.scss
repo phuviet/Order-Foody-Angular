@@ -1,0 +1,34 @@
+.form-group {
+  .help-block {
+    display: none;
+    color: $red;
+    &.confirm-password {
+      display: block;
+    }
+  }
+  .ng-invalid {
+    &.ng-dirty {
+      border-color: $red;
+      +.help-block {
+        display: inline-block;
+        margin: 0;
+      }
+      .cke {
+        border-color: $red;
+      }
+    }
+  }
+  .has-error {
+    .help-block {
+      display: inline-block;
+      margin: 0;
+    }
+  }
+}
+
+.register,
+.login {
+  .help-block {
+    color: $white;
+  }
+}
